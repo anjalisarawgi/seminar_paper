@@ -1,0 +1,27 @@
+We study rotation to understand how likely it is to maintain sparsity when the control variables are re-expressed in different ways. \\
+
+Consider a rotation matrix R (a square matrix) which when multiplied by a vector, rotates the vector in space without altering the magnitude of angles between the vectors. The rotation matrix comes with two key properties:
+\begin{enumerate}
+    \item Orthogonality: $R^{\prime} R=I_p$ where $I_p$ is the identity matrix. This property ensures that the the rotation preserves the lengths of vectors and angles between them, thereby not distorting the data. 
+    \item Determinant of 1: $det(R) = 1$. This property implies that the transformation is a pure rotation or reflection without any scaling.
+\end{enumerate}
+
+
+\textbf{Effect of Rotation on Sparsity:}\\
+Consider a regression model where the coefficients $\gamma$ are sparse, i.e. most of the coefficients are zero. When the control variables are transformed using a rotation matrix $R$, the new predictors $W_i$ are given by $RW_i$. Correspondingly, the coefficients are also transformed as $\tilde{\gamma}=R \gamma$. This transformed coefficient vector $\tilde{\gamma}$ tends to loose its sparsity because the values get mixed up and spread out, making more coefficients non-zero. 
+
+This effect occurs because rotation redistributes the values across the entire vector space, which dilutes the sparsity present in the original coefficient vector. As a result, the post rotation coefficient vector $\tilde{\gamma}$ is less likely to remain sparse. \\
+\\
+\textbf{Theorem 1}
+\textit{Suppose that the eigenvalues of  $E[W_i W_i\prime]$  are bounded away from zero and infinity, and that  $||\gamma||_2 \approx 1$ . Then the logarithm of the probability that model with regressor $W_i = RW_i$   satisfies the sparsity conditions (sufficiently sparse) is of the order $\frac{-p}{n} \log (p)$.}
+\\
+\\
+\textbf{Interpretation:} This theorem gives a theoretical analysis of the impact of rotations on sparsity. It says that as p increases, the probability that the randomly rotated model will remain sparse also decreases rapidly. Specifically, this probability is given by a bound of the order $p^{-4}log(p)$, which becomes exceedingly small as p grows larger. For instance, when $p>= 50$, the probability of maintaining sparsity is less than $10^{-21}$. Thereby, achieving sparsity through random rotation is highly impractical, particularly in high-dimensional settings where the number of predictors is large. \\
+\\
+This theorem is based on two conditions:
+\begin{enumerate}
+    \item The eigenvalues of the matrix $E[W_i W_i\prime]$ must be bounded away from zero and infinity. This condition ensures that variability is appropriate ensuring that there is numerical stability in the model.
+    \item The norm of the coefficient vector $\gamma$ should be approximately 1 to ensure the coefficients are of reasonable scale. 
+\end{enumerate}
+
+Moreover, this theoretical theoretical analysis presents that the robustness of sparsity-based estimators are heavily influenced by how control variables are transformed. 

@@ -1,0 +1,445 @@
+% \documentclass[12pt]{article}
+
+% \usepackage[]{graphicx}
+% \usepackage[]{color}
+% \usepackage{alltt}
+
+% \newcommand{\mytitle}{The Fragility of Sparsity}
+% \newcommand{\myname}{Anjali Sarawgi}
+% \newcommand{\mysupervisor}{Prof. Daniel Wilheim}
+
+% \usepackage[a4paper, width = 160mm, top = 35mm, bottom = 30mm, 
+% bindingoffset = 0mm]{geometry}
+% \usepackage[utf8]{inputenc}
+% \usepackage{ragged2e}
+% \usepackage{xcolor}
+% \usepackage[round, comma]{natbib}
+% \usepackage{fancyhdr}
+% \newcommand{\changefont}{%
+%     \fontsize{8}{11}\selectfont
+% }
+% \usepackage{hyperref}
+% \hypersetup{
+%   colorlinks = true,
+%   linkcolor = black,
+%   urlcolor = black,
+%   citecolor = black}
+% \pagestyle{fancy}
+% \fancyhead{}
+% \fancyhead[R]{\changefont{\mytitle}}
+% \fancyfoot{}
+% \fancyfoot[R]{\thepage}
+% \setlength{\headheight}{14.5pt}
+% \setlength{\parindent}{0pt}
+% \interfootnotelinepenalty = 10000
+
+% % ------------------------------------------------------------------------------
+% % MAIN -------------------------------------------------------------------------
+% % ------------------------------------------------------------------------------
+% \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% \begin{document}
+
+% % FRONT PAGE -------------------------------------------------------------------
+ 
+% \begin{titlepage}
+% \begin{center}
+    
+% \LARGE
+% Seminar Paper
+    
+% \vspace{0.5cm}
+      
+% \rule{\textwidth}{1.5pt}
+% \LARGE
+% \textbf{\mytitle}
+% \rule{\textwidth}{1.5pt}
+   
+% \vspace{0.5cm}
+      
+% \large
+% Department of Statistics \\
+% Ludwig-Maximilians-Universität München
+
+% \vfill
+
+% \Large
+% \textbf{\myname}
+
+% \vfill
+
+% \large
+% Munich, August 2024
+      
+% \vfill
+
+% \includegraphics[width = 0.4\textwidth]{sigillum.png}
+
+% \vfill
+
+% \normalsize
+% % Submitted in partial fulfillment of the requirements for the degree of M. Sc.
+% % \\
+
+% Supervised by \mysupervisor
+% \\
+% Advised by Mr. Vincent Stark
+% \end{center}
+% \end{titlepage}
+
+% % CONTENTS ---------------------------------------------------------------------
+
+% \pagenumbering{Roman}
+% \newpage
+
+% \begin{abstract}
+
+% Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+% incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+% nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+% Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+% fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+% culpa qui officia deserunt mollit anim id est laborum.
+
+% \end{abstract}
+
+% \newpage
+% \tableofcontents
+
+% %%%% if you would want to include material overview
+% %%%% use one of the following in addition
+% % \newpage
+% % \listoffigures
+% % \newpage
+% % \listoftables
+% \newpage
+
+% % CHAPTERS ---------------------------------------------------------------------
+
+% \pagenumbering{arabic}
+    
+% \section{Introduction}
+% \label{intro}
+% \input{chapters/introduction}
+
+% \newpage
+
+% \section{Conclusion}
+% \label{conclusion}
+% \input{chapters/conclusion}
+
+% \newpage
+
+% % ------------------------------------------------------------------------------
+% % APPENDIX ---------------------------------------------------------------------
+% % ------------------------------------------------------------------------------
+    
+% \pagenumbering{Roman}
+
+% \setcounter{page}{5} % CHANGE
+
+% \appendix
+
+% \section{Appendix}
+% \label{app}
+% \input{chapters/appendix}
+% \newpage
+% \begin{center}
+    
+% \end{center}
+
+% \section{Electronic appendix}
+% \label{el_app}
+
+% Data, code and figures are provided in electronic form.
+
+% \newpage
+    
+% % ------------------------------------------------------------------------------
+% % BIBLIOGRAPHY -----------------------------------------------------------------
+% % ------------------------------------------------------------------------------
+
+% \RaggedRight
+% \bibliography{bibliography}
+% \bibliographystyle{dcu}
+% \newpage
+
+% % ------------------------------------------------------------------------------
+% % DECLARATION OF AUTHORSHIP-----------------------------------------------------
+% % ------------------------------------------------------------------------------
+
+% \Large
+% \noindent
+% \textbf{Declaration of authorship} 
+% \vspace{0.5cm}
+% \noindent
+% \normalsize
+
+% I hereby declare that the report submitted is my own unaided work. All direct 
+% or indirect sources used are acknowledged as references. I am aware that the 
+% Thesis in digital form can be examined for the use of unauthorized aid and in 
+% order to determine whether the report as a whole or parts incorporated in it may 
+% be deemed as plagiarism. For the comparison of my work with existing sources I 
+% agree that it shall be entered in a database where it shall also remain after 
+% examination, to enable comparison with future Theses submitted. Further rights 
+% of reproduction and usage, however, are not granted here. This paper was not 
+% previously presented to another examination board and has not been published.
+% \\
+
+% \vspace{1cm}
+% \textcolor{orange}{Location, date} \\
+
+% \vspace{3cm}
+
+% \noindent\rule{0.5\textwidth}{0.4pt} \\
+
+% \textcolor{orange}{Name}
+
+% % ------------------------------------------------------------------------------
+
+% \end{document}
+
+
+\documentclass[12pt]{article}
+
+\usepackage[]{graphicx}
+\usepackage[]{color}
+\usepackage{alltt}
+\usepackage{amsmath}
+\usepackage{todonotes}
+
+\newcommand{\mytitle}{The Fragility of Sparsity}
+\newcommand{\myname}{Anjali Sarawgi}
+\newcommand{\mysupervisor}{Prof. Daniel Wilheim}
+
+\usepackage[a4paper, width = 160mm, top = 35mm, bottom = 30mm, 
+bindingoffset = 0mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{ragged2e}
+\usepackage{xcolor}
+\usepackage[round, comma]{natbib}
+\usepackage{fancyhdr}
+\newcommand{\changefont}{%
+    \fontsize{8}{11}\selectfont
+}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks = true,
+  linkcolor = black,
+  urlcolor = black,
+  citecolor = black}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[R]{\changefont{\mytitle}}
+\fancyfoot{}
+\fancyfoot[R]{\thepage}
+\setlength{\headheight}{14.5pt}
+\setlength{\parindent}{0pt}
+\interfootnotelinepenalty = 10000
+
+% ------------------------------------------------------------------------------
+% MAIN -------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+% FRONT PAGE -------------------------------------------------------------------
+ 
+\begin{titlepage}
+\begin{center}
+    
+\LARGE
+Seminar Paper
+    
+\vspace{0.5cm}
+      
+\rule{\textwidth}{1.5pt}
+\LARGE
+\textbf{\mytitle}
+\rule{\textwidth}{1.5pt}
+   
+\vspace{0.5cm}
+      
+\large
+Department of Statistics \\
+Ludwig-Maximilians-Universität München 
+
+\vfill
+
+\Large
+\textbf{\myname}
+
+\vfill
+
+\large
+Munich, August, 2024
+      
+\vfill
+
+\includegraphics[width = 0.4\textwidth]{sigillum.png}
+
+\vfill
+
+\normalsize
+Submitted in partial fulfillment of the requirements for the degree of M. Sc.
+\\
+
+Supervised by \mysupervisor
+
+\end{center}
+\end{titlepage}
+
+% CONTENTS ---------------------------------------------------------------------
+
+\pagenumbering{Roman}
+\newpage
+
+\begin{abstract}
+Sparsity-based estimators, such as Lasso (Least Absolute Shrinkage and Selection Operator) have become popular in modern data analysis due to their ability to handle high dimensional datasets by selecting a subset of relevant variables. However, in real world scenarios the datasets often come with added complexities which may challenge the robustness of sparsity-based estimators. This paper based on the original paper "The Fragility of Sparsity" investigates the robustness and reliability of sparsity-based estimators, particularly Lasso in high dimensional causal inference setting with complex data structure. Through a real world data stimulation study that varies both in size and complexity of the datasets, this paper aims to assess the behaviour of these estimators and their effectiveness in practical applications. 
+
+\end{abstract}
+
+\newpage
+\tableofcontents
+
+%%%% if you would want to include material overview
+%%%% use one of the following in addition
+% \newpage
+% \listoffigures
+% \newpage
+% \listoftables
+\newpage
+
+% CHAPTERS ---------------------------------------------------------------------
+
+\pagenumbering{arabic}
+    
+
+\newpage
+\section{Introduction}
+\label{SDF}
+\input{chapters/Ch1/1}
+\section{Literature Review}
+\input{chapters/litReview}
+\section{Methodology and Assumptions}
+\input{chapters/Ch2/2}
+\subsection{Methodological Setup}
+\input{chapters/Ch2/2.1}
+\subsection{Assumptions}
+\input{chapters/Ch2/2.2}
+\subsubsection{Choice of p}
+\input{chapters/Ch2/2.2.3}
+\subsubsection{Approximate Sparisty}
+\input{chapters/Ch2/2.2.1}
+\subsubsection{Homoscedasticity and Heteroscedasticity}
+\input{chapters/Ch2/2.2.2}
+
+\section{Analysis and Findings}
+\subsection{Linear Regression for Causal Effects}
+\input{chapters/Ch1/1.1}
+\subsection{Sparsity and Sparsity Based Estimates (SBEs)}
+\input{chapters/Ch1/1.2}
+\subsection{Normalization of Control Matrix}
+\input{chapters/Ch3/3.1}
+\subsubsection{Rotation}
+\input{chapters/Ch3/3.1.1}
+\subsubsection{Categorical Data}
+\input{chapters/Ch3/3.1.2}
+\subsubsection{Offsets for Normalization}
+\input{chapters/Ch3/3.1.3}
+\subsection{Efficiency gains under sparsity}
+\input{chapters/Ch3/3.2}
+
+\subsection{Tests for Sparsity}
+\input{chapters/Ch3/3.3}
+\subsubsection{Hausman Test}
+\input{chapters/Ch3/3.3.1}
+\subsubsection{Residual Test}
+\input{chapters/Ch3/3.3.2}
+
+\section{Experiments}
+\input{chapters/experiments/experiments}
+\subsection{Results and Findings}
+\input{chapters/experiments/results}
+\subsubsection{datasets}
+\section{Discussion}
+
+
+% \section{Conclusion}
+
+
+
+
+\item \newpage
+\section{Conclusion}
+\label{conclusion}
+\input{chapters/conclusion}
+
+
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% APPENDIX ---------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+    
+\pagenumbering{Roman}
+
+\setcounter{page}{5} % CHANGE
+
+\appendix
+
+\section{Appendix}
+\label{app}
+\input{chapters/appendix}
+\newpage
+
+\section{Electronic appendix}
+\label{el_app}
+
+Data, code and figures are provided in electronic form.
+
+\newpage
+    
+% ------------------------------------------------------------------------------
+% BIBLIOGRAPHY -----------------------------------------------------------------
+% ------------------------------------------------------------------------------
+
+\RaggedRight
+\bibliography{bibliography}
+\bibliographystyle{dcu}
+\newpage
+
+% % ------------------------------------------------------------------------------
+% % DECLARATION OF AUTHORSHIP-----------------------------------------------------
+% % ------------------------------------------------------------------------------
+
+% \Large
+% \noindent
+% \textbf{Declaration of authorship} 
+% \vspace{0.5cm}
+% \noindent
+% \normalsize
+
+% I hereby declare that the report submitted is my own unaided work. All direct 
+% or indirect sources used are acknowledged as references. I am aware that the 
+% Thesis in digital form can be examined for the use of unauthorized aid and in 
+% order to determine whether the report as a whole or parts incorporated in it may 
+% be deemed as plagiarism. For the comparison of my work with existing sources I 
+% agree that it shall be entered in a database where it shall also remain after 
+% examination, to enable comparison with future Theses submitted. Further rights 
+% of reproduction and usage, however, are not granted here. This paper was not 
+% previously presented to another examination board and has not been published.
+% \\
+
+% \vspace{1cm}
+% \textcolor{orange}{Location, date} \\
+
+% \vspace{3cm}
+
+% \noindent\rule{0.5\textwidth}{0.4pt} \\
+
+% \textcolor{orange}{Name}
+
+% ------------------------------------------------------------------------------
+
+\end{document}

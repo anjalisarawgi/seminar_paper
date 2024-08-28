@@ -1,0 +1,58 @@
+In statistical modelling, efficiency gains refer to the reduction in variance of an estimator leading to more precise estimates. Here, this concept is useful to compare the Ordinary Least Squares (OLS) estimators to alternative estimators like Sparsity Based Estimators (SBEs). This section quantifies the potential efficiency gains of alternative estimators like SBEs relative to OLS, showing that these efficiency gains are limited unless p is large enough and comparable to n. \\
+\\
+\textbf{Theoretical Framework}\\
+\\
+To quantify the potential gains from SBEs over using OLS estimators, the study compares the standard errors. It presents that the proportional variance reduction of SBEs relative to OLS is bounded by $1- \frac{p}{n}$. This implies that significant efficiency gains can only be achieved when $p$ is large but still less than $n$.\footnote{Here, $p$ is less than $n$ is considered to be able to use the OLS benchmark for comparision.}\\
+\\
+This efficiency gain can be expressed as the ratio of standard errors under SBE and standard errors under OLS. That is, \\
+\begin{equation}
+    \frac{s^*}{s_{\text{OLS}}} = \sqrt{1 - \frac{p}{n}}
+\end{equation}
+
+where:
+\begin{itemize}
+    \item $s^*$ is the standard error under sparsity based estimator
+    \item $s_\text{OLS}$ is the standard error under OLS estimator
+    \item $p$ is the number of variables (controls) 
+    \item $n$ is the number of observations
+\end{itemize}
+This formula indicates that the efficiency gain depends on the ratio of $\frac{p}{n}$.\footnote{This formula assumes that the errors (residuals) in the model have constant variance i.e. is homoschedastic. If the variance of the errors varies across observations (heteroskedasticity), the efficiency gains from SBEs may be smaller than expected. This happens because the estimation of variance might be biased, reducing the effectiveness of SBEs in lowering standard errors compared to OLS. So, while SBEs can still offer efficiency gains, these gains might be less pronounced in the presence of heteroskedasticity. The efficiency gain formula for heteroscedastic scenarios is given as:$\frac{s^*}{s_{\text{OLS}}} = \sqrt{(1 - \frac{p}{n})*k}$, where $k$ is a factor that adjusts for the heteroscedasticity present in the data. This factor $k$ represents the extent to which heteroscedasticy inflates the variance of the errors, thereby diminishing the relative efficiency gains of SBEs.}As $p$ increases relative to $n$, the efficiency gains also increases but the gains are bounded by the ratio $\frac{p}{n}$. This means that there is a limit on how much more efficient SBE can be over OLS. 
+\\
+\\
+\textbf{Practical Examples of Efficiency Gains}\\
+\\
+In practice, the efficiency gains under sparsity depend on the size of  p  relative to . Consider the following two scenarios for  n = 100 :
+\begin{enumerate}
+    \item \textbf{Case 1:} $p = 80$\\
+   The efficiency gain formula becomes:\\
+    \\
+    $\frac{s^*}{s_{\text{OLS}}} = \sqrt{1 - \frac{80}{100}} \approx 0.45$
+    \begin{itemize}
+        \item OLS is efficient and satisfies the Best Linear Unbiased Estimators (BLUE) property making it a better choice in this case
+        \item Here, standard error of the SBE is approximately 45\% of the standard error of the OLS. This indicates that the SBE is more efficient in this case. 
+    \end{itemize}
+
+    
+    \item \textbf{Case 2:} $p = 20$\\
+    The efficiency gain formula becomes:\\
+    \\
+    $\frac{s^*}{s_{\text{OLS}}} = \sqrt{1 - \frac{20}{100}} \approx 0.89$\\
+    \begin{itemize}
+        \item OLS becomes noisy, exhibits multicollinearity, and tends to overfit, making SBE the ideal choice
+        \item Here, the standard error of the SBE is approximately 89\% of the standard error of the OLS. This indicates that the SBE is more more efficient in this case. 
+    \end{itemize}
+   
+\end{enumerate}
+
+These examples illustrate the limitation that efficiency gains are capped and are minimal when the ratio $\frac{p}{n}$ is small. Thus, the potential benefit of using SBEs over OLS is more pronounced when $p$ is large relative to $n$.
+\\
+\\
+\textcolor{blue}{not sure if i want to include this here}\\
+\textbf{Theoretical Foundations: Understanding Lemma 1} \\
+Lemma 1 is a foundational result that asserts the reliability of OLS estimators under certain conditions, particularly when the ratio $\frac{p}{n} < 1$ and the model's errors are well behaved (i.e. homosceddastic).\\
+\\
+The lemma states that: 
+\begin{center}
+    $\hat{\beta}_{\text{OLS}} \sim \mathcal{N}(\beta, \sigma^2)$    
+\end{center}
+This implies that under the given conditions, the OLS estimator is asymptotically normal, meaning that as the sample size n increases, the distribution of the OLS estimator approaches the normal distribution, with mean $\beta$ and variance $\sigma^2$.

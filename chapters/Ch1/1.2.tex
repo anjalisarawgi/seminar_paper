@@ -1,0 +1,38 @@
+Sparsity refers to the idea in which a model can be well-approximated by a small number of non-zero coefficients. This is particularly useful in a high dimensional setting where we want to choose only the relevant variables. In this study, when we have a large set of predictors, only a small subset of these predictors $/s$ is assumed to significantly influence the outcome. That is, in our control matrix $W_i^{\prime} \gamma$ most of the coefficients $\gamma$ is zero. 
+\\
+\\ 
+The \textbf{sparsity assumption} implies that the true underlying model involves only a few active predictors, even when the number of potential predictors is large. Formally, let $\beta$ be the vector of coefficients. The sparsity assumption can be written as:
+\begin{center}
+    $\beta_j = 0$ for most $j = 1, 2, ...p$
+\end{center}
+This assumption allows for a more efficient estimation on identifying and estimating only the non-zero coefficients $\beta$.\\
+\\ 
+\textbf{Sparsity Based Estimators}\\
+Sparsity based estimators are built upon the assumption of sparsity. The most commonly used sparsity-based estimator is the LASSO (Least Absolute Shrinkage and Selection Operator) estimator along  with some of its variations, such as Debaised Lasso, Double Lasso, Grouped Lasso etc. The lasso estimator is a statistical regularization technique that adds a penalty to the OLS estimator to enforce sparsity in the model. The lasso estimator can be defined as: 
+\[
+\hat{\beta}_\lambda = \arg\min_{\beta} \left\{ \frac{1}{2n} \| y - X\beta \|_2^2 + \lambda \|\beta\|_1 \right\}
+\]
+where:
+\begin{itemize}
+    \item $\lambda$ is the regularization parameter which encourages sparsity my shrinking the coefficients to 0
+    \item $y$ is the $n \times 1$ response vector
+    \item $X$ is the $n \times p$ design matrix
+    \item $\beta$ is the $p \times 1$ vector of coefficients
+    \item $\|\beta\|_1 = \sum_{j=1}^{p} |\beta_j|$ is the L1 norm, imposing sparsity on the model
+\end{itemize}\\
+\\
+\\
+
+\textbf{Fragility of Sparsity Assumption}\\
+Though sparsity-based estimators have gained popularity due to their ability to handle high-dimensional data, the assumption of sparsity can be fragile. While they are useful, they also come with problems. The authors highlight these concerns regarding to the credibility of sparsity:
+\begin{itemize}
+    \item Sensitivity: SBEs are highly sensitive to how we normalize our control matrix. Even small changes in how we handle collinear columns or change baseline controls can lead to significant variations in the estimates. For example, changing the way we handle categorical {education } variables or how we center age as a cont variable can change the SBE results. This sensitivity can make SBEs less reliable in practice.
+    \item Robustness: OLS is usually robust to different normalization's. However, SBEs may not be robust and reliable. For instance, if the decision on how to group education levels or center age is arbitrary, the results from SBEs may not be trustworthy!
+    \item Lack of theoretical reasoning : In social sciences, there isn't a strong theoretical reason to believe that only a few control variables can capture most of the confounding effects. Additionally, its unclear what level of sparsity is even needed to ensure unbiased estimates. This lack of clarity and theoretical backing further complicates the use of SBEs in these fields.
+\end{itemize}
+
+
+
+
+
+

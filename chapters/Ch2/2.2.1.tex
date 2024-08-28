@@ -1,0 +1,15 @@
+For the tests and analysis in this study, the assumption of sparsity is relaxed from exact sparsity to approximate sparsity. Approximate sparsity ensures that even if our coefficients $\gamma$ is not exactly sparse, most of the predictive power comes only from a few non-zero coefficients. This means that for any given transformation, we accept a scenario where the model coefficients are not exactly sparse but are close to sparse.\\
+\\
+To understand this mathematically, a sparsity index $s$ is introduced, indicating the maximum number of non-zero coefficients allowed. The sparsity index is given by:
+
+\begin{equation}
+s = o\left(\sqrt{p} / \log p\right)
+\end{equation}
+
+This indicates that the number of non-zero coefficients $s$ should grow slower than $\sqrt{p}/\log p$. This criterion ensures the model remains sparse enough to allow for accurate inference. Additionally, the mean squared error (MSE) associated with this approximation is expressed as:
+
+\begin{equation}
+\min _{\|v\|_0 \leq s} E\left[\left(W_i^{\prime} \gamma - \tilde{W}_i^{\prime} v\right)^2\right] = O(s / p)
+\end{equation}
+
+This equation states that the MSE between the original and transformed variables should be small, ensuring that the approximation is close to the true model. The key task is to find the new coefficients $v$ that minimize the approximation error, under the condition that $v$ has at most $s$ non-zero coefficients.\footnote{\footnotesize $O(s/p)$ indicates that the mean squared error is proportional to the ratio $s/p$, meaning that as long as the number of significant coefficients $s$ is much smaller than the total number of predictors $p$, the error in approximating the model with a sparse representation remains manageable and small.}

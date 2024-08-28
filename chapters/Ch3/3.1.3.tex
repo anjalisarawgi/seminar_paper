@@ -1,0 +1,24 @@
+For modelling complex relationships in regression, \textbf{Hermite polynomials} are useful because they help us capture non-linear effects. By introducing non parametric regression, the paper extends the discussion to more complex scenarios involving continuous variables. \\
+\\
+One of the most important things to consider when using Hermite polynomials is how we center or shift the variables of interest before applying the polynomial transformation. The authors indicate that this offset or shift can have a big impact on the results of regression, especially to maintain sparsity.\\
+\\
+\textbf{Theorem 3} Suppose $\lambda=L / \log p, L>0$. If $L$ is fixed, then for $1 \leq j \leq L \sqrt{p} / \log p$ and $p \geq \max \left\{(2 L)^2, 6\right\}, \tilde{\gamma}_{p-j}^2 \geq C e^{j / 2}$, where $C$ is an absolute constant, and sparsity assumption fails. In contrast, if $L \rightarrow 0$, sparsity assumption holds.\\
+\\
+\textbf{Interpretation:} Theorem 3 explains the impact of choosing an offset $\lambda$ when using Hermite polynomials in a regression model. Specifically, it presents how this choice of an offset can affect the sparsity of the model. \\
+\\
+Consider:
+\begin{enumerate}
+    \item \textbf{Scalar Variable $z_i$:} This represents the continuous variable of interest which is to be transformed using Hermite polynomials
+    \item \textbf{Hermite Polynomials $H_j (x)$:} to capture non linear relationships between the continuous variable $z_i$ and the dependent variable. They are particularly effective when $z_i$ follows a normal distribution. 
+    \item \textbf{Offset $\lambda$:} The offset $\lambda$ is a sift applied to the variable $z_i$ before it is transformed by the Hermite polynomial
+    \item $\boldsymbol{p}$ :  $p$ is the number of polynomial terms in the model
+    \item $\boldsymbol{L}$ : where, $L$ is a positive number that does not change in some cases but can decrease in others
+    \item $\boldsymbol{\lambda = \frac{L}{\log p}}$ : This is the formula that determines the offset on $L$ based on $p$
+\end{enumerate}
+
+\textbf{Fixed $L$:} When $L$ is fixed, as you add more terms to the model (i.e. as $p$ gets bigger) the importance of many of these terms (represented as coefficients) starts to grow quickly. This is because $\log p$ grows much more slowly than p itself causing the $\lambda$ to not decrease quickly enough. This slow decrease in $\lambda$ means that the coefficients in the model start to grow too quickly as more terms are added (as $p$ increases). Consequently, many terms in the model become important, causing the model to become more complex and less sparse.\\ 
+\\
+\textbf{$L$ approaches 0:} If $L$ decreases as $p$ increases (i.e.$L \rightarrow 0$), the offset $\lambda$ decreases more effectively, adjusting for the slow growth of $\log p$. This adjustment ensures that the coefficients remain small and helps to keep the model sparse. \\
+\\
+\textbf{Key point:} The way we adjust our variables with the offset $\lambda$ either makes our model very complex with a lot of important terms, or it can keep it very simple with only a few important terms. If we pick the wrong shift $\lambda$ like when $L$ is fixed, your model might end up being too complicated with too many important terms. Whereas, if we carefully choose $\lambda$ where $L$ decrease as more terms are added, the model remains sparse retaining only a few terms that really matter.
+

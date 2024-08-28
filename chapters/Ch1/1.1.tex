@@ -1,0 +1,27 @@
+Linear Regression models are known as the workhorse of causal inference due to their significant role in this field. These models, typically estimated using the Ordinary Least Squared (OLS), method are particularly valuable because they minimize Mean Squaed Error (MSE), which thereby under Gauss-Markov assumption provides the best linear unbiased estimates (BLUE). Moreover, linear regression models offer confidence intervals for these estimates, which are crucial in assessing the precision and statistical significance of causal effects. 
+\\
+\\
+In causal inference, the primary objective is to estimate the causal effect of a treatment or an intervention on an outcome variable. Here, linear regression is useful because it allows us to control for confounding variables to isolate the effect of the treatment. By including these con founders as control variables, we can accurately isolate the effect of treatments. \\
+\\
+The key assumption here is \textit{the assumption of conditional randomness}. This assumption states that after controlling for a set of variables, the remaining variation in the treatment variable is as good as random. When this assumption holds, the coefficients derived from this linear regression model can be interpreted causally. This assumption gets stronger as we include more relavant variables. 
+\\
+\\
+\textbf{Model Specification:}
+\\
+\begin{equation}
+    Y_i=D_i \beta+W_i^{\prime} \gamma+U_i, \quad E\left[U_i \mid D_i, W_i\right]=0
+\end{equation}
+\\
+\noindent where,
+$Y_i$ is the outcome variable, $D_i$ is the treatment variable,
+$\beta$ is the causal effect of $D_i$ on $Y_i$, 
+$W_i$ is a vector of control variables,
+$\gamma$ is the vector of coefficients for $W_i$, and $U_i$ is the error term. \\
+\\
+\textit{Note:}
+$E\left[U_i \mid D_i, W_i\right] = 0$ ensures no omitted variable bias and $E\left[U_i \mid D_i, W_i\right]=0$ is the control function.
+\\
+\\
+In practice, researchers often seek to increase the sample size $(n)$ in their studies. This is because higher the value of n, more stronger our assumption of conditional randomness becomes. However, OLS being a traditional estimate limits p to be smaller than n, and prefers p to be no more than 10 percent of the total number of observations n i.e $p<<n$. OLS only tends to be effective is p is much smaller than n. Even if we consider p to be large but less than n, OLS estimates can be unreliable and noisy giving us less reliable estimates. This limitation of OLS leads to the development of Sparsity based estimates.\\
+\textcolor{red}{mention about the limitations of ols too pls in points}.
+

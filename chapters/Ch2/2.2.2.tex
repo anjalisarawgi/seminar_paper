@@ -1,0 +1,32 @@
+In regression analysis, the behaviour of the error terms (residuals) is crucial for the validity and efficiency of the estimates. The paper primarily focuses on the assumption of \textbf{homoscedasticity}, where the variance of errors is constant across all observations. This assumption forms the basis for the theoretical results and comparisions between Ordinary Least Square (OLS) estimators and Sparsity-Based Estimators (SBEs). The authors also extend the study to cases when \textbf{heteroscedasticity} is present.\\
+\textcolor{red}{add: ols estimators always assume homosedasticity}
+\begin{enumerate}
+\item \textbf{Homoscedasticity:} Homoscedasticity refers to the situation when the variance of the error terms in a regression model are constant. This condition ensures that the errors are evenly spread regardless of the predictor variables. Mathematically, for errors $\epsilon_i$, homoscedasticity is expressed as:
+\begin{center}
+    $\text{Var}(\epsilon_i) = \sigma^2 \quad \text{for all } i$ , where  $\sigma^2$ is constant
+\end{center}
+\textbf{Implications:}
+\begin{enumerate}
+    \item \textbf{Efficiency of OLS:} Under homoschedastic assumptions, Ordinary Least Square (OLS) estimators are the best linear unbiased estimators (BLUE), according to the Gauss Markov Theorem. This means that OLS has the smallest possible variance among all linear unbiased estimators. 
+    \item \textbf{Standard Errors:} Homoschedasticity of errors allows for a more straightforward calculation of standard errors, confidence intervals, and hypothesis tests. This is because:
+    \begin{enumerate}
+        \item The variance of the OLS estimator is easy to compute. We can use $\text{Var}(\hat{\beta}) = \sigma^2 (X^{\prime}X)^{-1}$, where $\sigma^2$ is constant across all observations.    
+        \item It ensures that the standard errors accurately reflect the estimator's variability. This ensures that the confidence intervals and hypothesis tests based on these standard errors are reliable, thereby allowing for accurate statistical inference. For example, it ensures validity in determining whether a coefficient is significantly different from zero. 
+        \item There is no need to adjust the standard errors to account for heterogeneity in the variance. Whereas, an adjustment would be necessary in case of heteroschedasticity to ensure valid results of confidence intervals and hypothesis testing.
+    \end{enumerate}
+\end{enumerate}
+
+\item \textbf{Heteroscedasticity:} In real-world data, we often observe heteroscedasticity, where the variance of the error terms varies. In the cases of heteroschedasticity, the errors no longer have constant variance leading to several complications for statistical inference. Mathematically, for errors $\epsilon_i$, heteroschedasticity is represented as:
+\begin{center}
+    $\text{Var}(\epsilon_i) = \sigma_i^2 \quad \text{where } \sigma_i^2 \text{ depends on the predictors}$
+\end{center}
+\textbf{Implications:}
+\begin{enumerate}
+    \item \textbf{Efficiency loss of OLS:} In heteroschedastic scenarios, the OLS still remains unbiased, however, it is no longer the most efficient estimator. This means that the variance of OLS estimators could be unnecesarily large which reduces its appeal and usefulness in higher dimensional cases. 
+    \item \textbf{Bias in Standard Errors:} When heteroscedasticity is present, the standard errors of the estimators might be biased. For example, confidence intervals might be too wide or too narrow and the hypothesis tests might produce unreliable results. 
+\end{enumerate}
+
+\end{enumerate}
+Moreover, this paper acknowledges that in high-dimensional scenarios where $p$ is large relative to $n$, heteroscedasticity could reduce the potential efficiency gains of SBEs. The authors thereby also present the theoretical insights for heteroschedastic cases tough the assumption of homoschedasticity is the baseline assumption. Nonetheless, SBEs remain attractive even in heteroschedastic cases because they leverage the sparisty assumption to mitigate some of the problems caused by heteroscedasticity. 
+
+
