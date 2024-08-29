@@ -33,6 +33,14 @@
     \end{enumerate}
     This approach allowed us to test the robustness of the SBEs across different dimensional settings. 
 
+    \item \textbf{Model:} Both, the original paper and our experiments use the post double lasso as the primary model. Additionally, we also use a simple OLS regression serving as a baseline for comparision.The post double lasso is constructed as follows:
+    \begin{enumerate}
+        \item First Lasso Regression: Regressing treatment (D) on the control variables (X)
+        \item Second Lasso Regression: Regression outcome (Y) on the control variables (X)
+        \item Taking the union of selected features from both lasso regressions
+        \item OLS regression with only the selected features from the previous steps
+    \end{enumerate}
+    
     \item \textbf{Normalization Variations:}\\
     The original paper evaluated the impact of various normalization strategies on the control matrix. In our study, we followed these methods too. They include:
     \begin{enumerate}
@@ -41,18 +49,15 @@
     \end{enumerate}
 
     \item \textbf{Application of Sparsity Tests:}\\
-    The authors presented two tests to evaluate the validity of the sparsity assumption. Our study also follow the same tests to evaluate the assumptions of sparsity. These tests are:\\
+    The authors presented two tests to evaluate the validity of the sparsity assumption. Our study also follow the same tests to evaluate the assumptions of sparsity. These tests are:
     \begin{enumerate}
         \item Hausman Test
         \item Residual Test
     \end{enumerate}
 
     \item \textbf{Analysis across different settings:}\\
-    \begin{itemize}
-        \item While the original paper focused on the three chosen empirical applications, we extend the analysis to test how the results of the estimates vary for varying datasets sizes, that is for varying number of observations $n$. 
-        \item Additionally, in our study we also check how sensitive our results to different preprocessing variations. 
-    \end{itemize}
-    
+     While the original paper focused on the three chosen empirical applications, we extend the analysis to test how the results of the estimates vary for varying datasets sizes, that is for varying number of observations $n$. Additionally, in our study we also check how sensitive our results to different preprocessing variations. 
+        
 
     
 \end{enumerate}

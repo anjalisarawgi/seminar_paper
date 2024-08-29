@@ -1,1 +1,65 @@
-\textbf{OLS standard errors as p increases}
+To test the robustness of sparsity-based estimators (SBEs) across different dimensions, we considered three cases. Each of these cases represented a different relationship between the number of predictors ($p$) and number of observations ($n$): 
+\begin{enumerate}
+        \item \textbf{Case 1: Original number of predictors ($p \ll n$)}\\
+        In this scenario, the OLS estimator is expected to perform well, as it is typically robust and efficient when p is much smaller than n. The sparsity based estimator (SBE) should also perform reasonable well. 
+        \item \textbf{Case 2: Number of predictors close to the number of observations ($p \approx n$)}\\
+        In this setting, the OLS estimator may become unstable. In theory, SBEs should provide more stable and efficient estimates than OLS. However, if the sparsity assumption is fragile, we may notice variability in the estimates for different types of normalilzations. 
+        \item \textbf{Case 3: Number of predictors is more than the number of observations ($p > n$)}\\
+        In such high dimensional setting, OLS can no longer be used and SBE becomes a preferred choice. This case allows us to rigourously test the robustness of the sparsity assumption, when $p$ is higher than $n$. 
+    \end{enumerate}
+
+Just like the original paper, we applied various feature transformations to the dataset to increase the dimensions of the data to the appropriate sizes for the second and third cases. The  transformations included :
+\begin{enumerate}
+    \item \textbf{Polynomial Features:} Creating higher-degree terms to capture non-linear relationships
+    \item \textbf{Interaction Terms:} Generating interaction features between existing predictors for interaction effects
+    \item \textbf{Statistical Transformations:} Applying logarithmic and square root transformations to the original features
+    \item \textbf{Noise Additions:} Introduced random noise to assess the robustness of SBEs when redundant features are present too.
+\end{enumerate}\\
+
+
+\begin{table}[h!]
+\renewcommand{\arraystretch}{1.5}
+\centering
+\begin{tabular}{||l l l l l l||} 
+ \hline
+ \hline
+ Case & Drop1 & Drop2 & Demean & Median & OLS \\ [0.5ex] 
+ \hline \hline
+ \multicolumn{6}{||c||}{(i) Treatment Coefficient Estimate} \\ [0.5ex]
+ Original $p$ ($p = 10$) & 1670.71 & 1670.71 & 1691.39 & 1670.71 & 1670.71 \\ 
+ $p$ close to $n$ ($p = 366$) & 2584.34 & 2701.57 & 2425.79 & 2608.61 & 2642.21 \\
+ $p$ higher than $n$ ($p= 499$) & 2474.55 & 2396.02 & 2431.1 & 2505.07 & - \\ [1ex] 
+ \hline
+ \multicolumn{6}{||c||}{(ii)Treatment Coefficient Standard Error} \\ [0.5ex]
+ Original $p$ ($p$ = 10) & 641.13 & 641.13 & 638.67 & 641.13 & 641.13 \\ 
+ % $p$ close to $n$ (p = 188) : & 793.01 & 795.445 & 783.22 & 793.778 & 792.39 \\
+ $p$ close to $n$ (p = 366) & 829.40 & 821.09 & 809.31 & 830.15 & 824.34 \\
+ $p$ higher than $n$ ($p= 499$)  & 824.44 & 832.19 & 818.07 & 833.46 & - \\ [1ex] 
+ \hline
+ \multicolumn{6}{||c||}{(iii) Number of Variables Selected by lasso} \\ [0.5ex]
+ Original $p$ ($p = 10$) & 10 & 10 & 8 & 10 & - \\ 
+ $p$ close to $n$ ($p = 366$) & 268 & 271 & 229 & 268 & - \\
+ $p$ higher than $n$ ($p= 499$) & 353 & 363 & 306 & 353 & - \\ [1ex] 
+ \hline \hline
+\end{tabular}
+\caption{\textit{Estimated Treatment Coefficients and Standard Errors using different specifications for the Lalonde Dataset.} The table reports treatment coeficient estimates, their standard errors, and the number of variables selected by lasso under the three scenarios. The lasso alpha parameter is set to 1.0, the default in scikit-learn, to maintain the consistency with the software defaults as in the original analysis. }
+% \textcolor{red}{idk why standard errors for sbes also increase}
+\label{table:1}
+\end{table}
+
+\textbf{Interpretation:}
+The table shows how the estimated treatment coefficients, standard errors, and the number of variables selected by Lasso change with different models and normalization. Specifically:\\
+\textbf{(A) Treatment Coefficients and Standard Errors:}
+\begin{itemize}
+    \item When the predictors is small (p = 10), the coefficients and standard errors are stable across all normalizations and their standard errrors are relatively low (around 641).
+    \item When p gets closer to n (p = 336), both coefficients and standard errors increase, showing greater sensitivity and potential fragility
+    \item When the number of predictors exceeds the number of observations (p=499), the treatment coefficients and standard errors continue to show variability across different normalizations. The standard errors remain high, indicating less confidence in the estimates as the dimensionality increases.
+\end{itemize}
+
+\textbf{(B) Number of variables selected by Lasso:}
+\begin{itemize}
+    \item For small number of predictors, lasso consistently selects all available variables, regardless of the normalizations
+    \item As $p$ approaches $n$, the number of selected variables selected vary significantly for different normalizations i.e. from 229 to as high as 271. This inconsistency reflects that different normalizations also changes how many variables lasso selects. This could highly affect our estimates. A similar behaviour is seen in the case when $p>n$. This highlights the instability of the model in high-dimensional settings. 
+\end{itemize}
+
+\textcolor{red}{why do standard errors also increase?}

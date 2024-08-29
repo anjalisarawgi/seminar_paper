@@ -1,2 +1,39 @@
-\textbf{Preprocessing Variations:}\\
-These experiments evaluate the impact of preprocessing on the robustness of SBEs by conducting experiments with datasets that were both preprocessed with outlier and multicollinearity checks and without any of these checks. This helped us determine how preprocessing choices for a cleaner dataset could affect the validity of the stability of sparsity-based estimators. 
+We evaluate the assumption of sparsity using the Hausman and Residual tests introduced in the original paper. The Hausman test looks at the difference in estimates between the SBE and OLS. If this difference is significant, it means the sparsity assumption does not hold. Meanwhile, the Residual test checks if the sum of squared residuals (RSS) from the lasso regression is similar to that from OLS. If this is not true, the assumption of sparsity does not hold. 
+
+\begin{table}[h!]
+\renewcommand{\arraystretch}{1.5}
+\centering
+\begin{tabular}{||l l l l l||} 
+ \hline
+ \hline
+ Test & Drop1 & Drop2 &  Demean & Median \\ [0.5ex] 
+ \hline \hline
+ \multicolumn{5}{||c||}{(i) Case 1: Original $p$} \\ [0.5ex]
+ Hausman Test & 0.133 & 0.1333 & 0.177 & 0.177 \\ 
+ Residual Test & 0.2630 & 0.2630 & 0.2163 & 0.2163 \\
+ \hline
+ \multicolumn{5}{||c||}{(ii) Case 2: $p$ close to $n$} \\ [0.5ex]
+ Hausman Test & 0.05339 & 0.085871 & 0.0973 & 0.04443 \\ 
+ Residual Test: & 0.998194 & 0.9967  & 0.9975 & 0.998297 \\ [1ex] 
+ \hline \hline
+\end{tabular}
+\caption{\textit{P-values from Hausmann and Residual Tests for Sparsity Assumption on the Lalonde Dataset}. The table presents the p-values for two tests (Hausman and Residual) under different normalizations (Drop1, Drop2, Demean, Median) across two cases: (i) the original number of predictors ($p$) and (ii) when $p$ is close to the number of observations ($n$).The tests assess the validity of sparsity assumption with varying dimensions. We use LassoCV from scikit-lean to find the optimal alpha value in this case. \textcolor{red}{explain why lassocv}}
+% \caption{LALONDE DATASET: p value of the two tests on both the datasets. Note that we used the cross validated lasso for lalonde dataset\\
+% \\
+% for lalonde we accept the null hypothesis and say that the difference has no difference and say the sparsity assumptions hold (makes sense)
+
+% for communities and crime we reject the null hypothesis and say the sparsity assumption does not hold (makes sense too cause we want all variables) 
+% }
+% \textcolor{red}{we cannot do a more than n case because ols benchmark is not valid}
+
+\label{table:1}
+\end{table}
+
+\textbf{Interpretation:}\\
+When we test for original predictors $p$, the p-values for both Hausman and Residual tests are relatively high (greater than 0.1 at 10\% level of significance). This means that we do not reject the null hypothesis and suggests that the difference between OLS and SBE estimates are not statistically significant. This thereby implies that the assumption of sparsity holds when the number of predictors is much smaller than the number of observations. \\
+\\
+When $p$ increases in dimensions and approaches n, the Hausman test yields lower p-values which ranges from 0.04443 to 0.0973. Under 10\% level of significance, we would reject the null hypothesis. This suggests that the sparsity does not hold well when $p$ increases in dimensions and approaches $n$.\\
+\\
+However, the Residual test p-values are very high (close to 1), indicating that the test does not find evidence against the sparsity assumption in this setting and the sparsity assumption may hold. This means that our residual sum of squares (RSS) for both OLS and SBE methods are not very different. This indicates that SBE does not give a higher errors inspite even after variable selection, supporting the assumption of sparsity.\\
+\\
+Moreover, with a small number of predictors, both tests support the sparsity assumption. However as $p \approx n$, the Hausman test suggests rejecting the sparsity assumption, while the Residual test does not. This indicates some ambiguity. Additionally, for cases where $p>n$, these tests cannot be evaluated because the OLS benchmark is not valid. 
