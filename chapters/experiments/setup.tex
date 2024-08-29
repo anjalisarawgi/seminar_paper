@@ -1,0 +1,29 @@
+These experiments involved several key adjustments to further explore and validate the fragility of sparsity assumption:
+
+\begin{enumerate}
+    \item \textbf{Choice of Datasets:}\\
+    We utilized two datasets to provide a comprehensive evaluation of the sparsity assumption under different empirical conditions. The \textbf{Lalonde dataset} is a well-known benchmark in causal inference offering a stable environment to validate the results of our experiments. In contrast, the \textbf{Communities and Crime Dataset} presents a high-dimensional data scenario with larger number of observations. This allows us to examine the performance of SBEs under various conditions, including different subsets of the data for further exploration and splitting the data to compute the mean squared error (MSE) under multiple settings. 
+
+    \item \textbf{Preprocessing Variations:}\\
+    These experiments evaluate the impact of preprocessing on the robustness of SBEs by conducting experiments with datasets that were both preprocessed with outlier and multicollinearity checks and without any of these checks. This helped us determine how preprocessing choices for a cleaner dataset could affect the validity of the stability of sparsity-based estimators. 
+
+    \item \textbf{Feature Transformations for Dimensioanality Variations:}\\
+    To test the robustness of SBEs across different dimensions, we applied various feature transformations to the dataset.  These transformations were done to increase the dimensions of the data. The  transformations included taking polynomial features, interactions, statistical transformations (log and square roots) and noise additions. Specifically, we experimented with three cases: 
+    \begin{enumerate}
+        \item Original Case: with original number of predictors $(p)$ where $p$ is much smaller than the number of observations $n$
+        \item $p$ close to $n$ case: where number of predictors $p$ is close to the number of observations $n$
+        \item $p$ is more than $n$ case: where the number of predictors $p$ exceeds the number of observations $n$
+    \end{enumerate}
+    This approach helps us assess the fragility of sparsity assumption in settings with varying levels of complexity and dimensionality.
+
+    \item \textbf{Testing for varying number of observations $n$:}\\
+    To further examine the effect of varying sample sizes on the fragility of SBEs, we performed experiments using three different sample sizes from the \textbf{Communities and Crime dataset:} the full dataset, a subset of 500 observations, and a subset of 150 observations. This enables us to evaluate whether the results where consistent across different sample sizes and provided insignts into the robustness of SBEs for varying dataset sizes. 
+
+    \item \textbf{Mean Squared Error Analysis for Machine Learning:}
+    These experiments are aimed to evaluate the impact of SBEs within a machine learning context, where the primary focus is the prediction performance of models. For classification tasks, prediction performance can be assessed using metrics like accuracy, while for regression tasks, metrics such as Mean Squared Error (MSE) or R-Squared are commonly used. Our experiments focused on these predictive measures.
+    
+    In particular, for the \textbf{Communities and Crime Dataset}, which has relatively high number of observations, we split the dataset into training and testing sets to evaluate the MSE and assess the prediction performance of SBEs compared to OLS.\\
+    \\
+    \textit{Note:} While communities and crime dataset consists of approximately 1,900 observations, which is smaller than typical datasets used in machine learning evaluations, it was chosen deliberately to test the sparsity assumption in high-dimensional cases. For testing the findings of this paper, it often requires us for our number of predictors to be extremely high, approaching the number of observations $n$ itself. Using a much larger dataset, such as one with 20,000 observations would necessitate increasing p to be around 10,000 or more. This could result in highly redundant datasets due to the excessive number of artificially added features. The communities and Crime dataset thus serves as an ideal compromise, providing sufficient observations to evaluate the prediction performance without introducing undue redundancy.
+        
+\end{enumerate}

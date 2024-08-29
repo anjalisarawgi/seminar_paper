@@ -1,9 +1,58 @@
+% \begin{enumerate}
+%     \item Empirical Applications: The study begins with selecting empirical applications that are relevant for testing the robustness and validity of sparsity based estimators.
+%     \item Choice of p: Based on the number of observations, choose the number of predictors in the model, ensuring that p is less than n to be able to use the OLS benchmark.
+%     \item Normalizations: Apply different normalization methods to check for the robustness of the statistics
+%     \item Analysis / Tests: Apply the Hausmann test and Residual test to evaluate the sensitivity of SBEs for different normalizations.
+% \end{enumerate}
+
 \begin{enumerate}
-    \item Empirical Applications: The study begins with selecting empirical applications that are relevant for testing the robustness and validity of sparsity based estimators.
-    \item Choice of p: Based on the number of observations, choose the number of predictors in the model, ensuring that p is less than n to be able to use the OLS benchmark.
-    \item Normalizations: Apply different normalization methods to check for the robustness of the statistics
-    \item Analysis / Tests: Apply the Hausmann test and Residual test to evaluate the sensitivity of SBEs for different normalizations.
+    \item \textbf{Choice of Datasets:} 
+    The original paper analysed the results on thrree empirical applications to examine the robustness of Sparsity-Based Estimators (SBEs):
+    \begin{itemize}
+        \item Effect of Abortion on Crime (\cite{abortionCrime})
+        \item Occupational Upgrading by Black Southerners (\cite{blackWW2})
+        \item Impact of Moral Values on Voting Behaviour (\cite{votingMoral})
+    \end{itemize}
+    In our study, we extended this study by selecting two additional datasets.
+    \begin{itemize}
+        \item Lalonde Dataset (\cite{dowhy})
+        \item Communities and Crime dataset (\cite{misc_communities_and_crime_unnormalized_211})
+    \end{itemize}
+
+    \item \textbf{Baseline Comparison:}\\
+    As in the original paper, we compare the two datasets using their regression models with OLS and SBEs, including the post-double selection method. The authors used this comparison to see how estimates differed because of the sparsity assumption. Our Study used this comparison too to assess how well SBEs work compared to OLS in different situations. 
+
+    \item \textbf{Choice of predictors (p)}:\\
+    The original paper carefully choses the number of predictors $p$ relative to the number of observations $n$ to ensure that $p$is close to but less than $n$. This allowed the authors to use OLS as a benchmark to evaluate the performance. The original paper essentially focused on a high dimensional case where $p$ is close to but less than $n$. 
+
+    In our study, we extend this approach by experimenting with three similar cases:
+    \begin{enumerate}
+        \item \textbf{Case 1:} Where $p$ has its original dimensions which is much smaller than $n$
+        \item \textbf{Case 2:} Where $p$ is close to $n$
+        \item \textbf{Case 3:} Where $p$ is more than $n$
+    \end{enumerate}
+    This approach allowed us to test the robustness of the SBEs across different dimensional settings. 
+
+    \item \textbf{Normalization Variations:}\\
+    The original paper evaluated the impact of various normalization strategies on the control matrix. In our study, we followed these methods too. They include:
+    \begin{enumerate}
+        \item Categorical variables: Dropping different columns as the reference categories to resolve multicollinearity among the control variables
+        \item Numerical variables: Normalizing the baseline categories with different offset values which include demeaning, subtracting with median, min-max scaling or substracting with random offsets. 
+    \end{enumerate}
+
+    \item \textbf{Application of Sparsity Tests:}\\
+    The authors presented two tests to evaluate the validity of the sparsity assumption. Our study also follow the same tests to evaluate the assumptions of sparsity. These tests are:\\
+    \begin{enumerate}
+        \item Hausman Test
+        \item Residual Test
+    \end{enumerate}
+
+    \item \textbf{Analysis across different settings:}\\
+    \begin{itemize}
+        \item While the original paper focused on the three chosen empirical applications, we extend the analysis to test how the results of the estimates vary for varying datasets sizes, that is for varying number of observations $n$. 
+        \item Additionally, in our study we also check how sensitive our results to different preprocessing variations. 
+    \end{itemize}
+    
+
+    
 \end{enumerate}
-
-
-
