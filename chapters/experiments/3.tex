@@ -34,6 +34,8 @@ varying dataset sizes. \\
 
 \textbf{Interpretation:} These results are for dropping the first reference category along with no offset normalization for the categorical variables. The table shows that as we decrease the number of observations $n$, the standard error also continues to increase. This pattern indicates that larger sample sizes help stabilize the estimates from sparsity based estimators (SBEs), reducing their fragility. Smaller sample sizes on the other hand are associated with larger standard errors which indicates greater variability and less reliable estimates. \\
 \\
+More intitutively, this result supports the fact that as the ratio of p to n reduces, the model performs better.\\
+\\
 \textit{Note:} The communities and crime dataset is not a standard causal inference dataset. When testing with "pop" (population) as the treatment variable, we observed that the coefficients for the treatment are very small. This outcome suggests that there is a minimal causal effect of the treatment on the outcome variable. However, this should not affect our findings on the robustness of SBEs because our focus it to study the behaviour of the standard errors rather than the causal effect size itself.\\
 \\
 \textbf{(B) Predictive Performance Analysis }\\
@@ -44,17 +46,37 @@ This experiment is aimed to evaluate the impact of SBEs within a machine learnin
 \begin{tabular}{||l l l l l l||} 
  \hline
  \hline
- Case & Drop1 & Drop2 & Drop3 & Demean & Median \\ [0.5ex] 
+ Case: Original p ($p \ll n$) & Drop1 & Drop2 & Drop3 & Demean & Median \\ [0.5ex] 
  \hline \hline
  Mean Squared Error (MSE) & 47791.44 & 47839.11 & 48066.58 & 46633.518 & 46376.036 \\ 
  R-Squared (R2) & 0.8701 & 0.8699 & 0.8693 & 0.8732 & 0.8739 \\
  \hline \hline
 \end{tabular}
-\caption{Mean squared error and R squared measures for SBE method predictions for Communities and Crime Dataset}
+\caption{Mean squared error and R squared measures for SBE method predictions for Communities and Crime Dataset. This is for the original case where p is much lower than n.}
 \label{table:1}
 \end{table}
+
 
 \textbf{Interpretation:} 
 The mean squared error (MSE) varies across different normalization's for the sparsity based estimates. However, the magnitude of these variations is relatively small which suggests that these differences may not be statistically significant. Further analysis in different scenarios might be required to check if these differences are meaningful. \\
 \\
-The R squared remains consistent across the different normalization methods. This suggests that explainability of the model as indicated by R-squared does not vary much for different normalization choices. 
+The R squared remains consistent across the different normalization methods. This suggests that explainability of the model as indicated by R-squared does not vary much for different normalization choices. \\
+\\
+However, if we choose the case where p is close to n, our MSE starts to fluctuate alot. This is the case seen even for a simple scenario of choosing a reference category differently which is a choice we usually overlook. 
+\begin{table}[h!]
+\renewcommand{\arraystretch}{1.5}
+\centering
+\begin{tabular}{||l l l l l||} 
+ \hline
+ \hline
+ Case: p close to n ($p \approx n$) & Drop1 & Drop2 & Drop3 & Drop4 \\ [0.5ex] 
+ \hline \hline
+ Mean Squared Error (SBE) & 1989043.14 & 2797171.52 & 1345545374.66 & 962625.71 \\ 
+ Mean Squared Error (OLS) & 1120277.30 & 1245272.190 & 1413348.61 & 1240219.09 \\ 
+
+ \hline \hline
+\end{tabular}
+\caption{Mean squared error and R squared measures for SBE method predictions for Communities and Crime Dataset}
+\label{table:1}
+\end{table}
+This may raise serious concerns about the fragility of estimators even in the context of machine learning when we have very high dimensional data. Also note that in these cases, the r squared also becomes egetive showig complexities in the explainability of the models. \textcolor{red}{Note, this is for for a low lasso regularization parameter +++ ols is more consistent and less fragile}

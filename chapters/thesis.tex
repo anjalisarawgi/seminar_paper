@@ -399,8 +399,16 @@ Sparsity-based estimators, such as Lasso (Least Absolute Shrinkage and Selection
 \section{Electronic appendix}
 \label{el_app}
 
-Data, code and figures are provided in electronic form.
-
+All scripts and raw data used in this study are available in the following GitHub repository: \href{https://github.com/anjalisarawgi/fragility_of_sparsity_review}{https://github.com/anjalisarawgi/fragility\_of\_sparsity\_review}\\
+\\
+The repository is structured as follows:
+\begin{itemize}
+    \item \textbf{`/Data/'} contains both raw and processed data for the datasets used in the paper. 
+    \item \textbf{`/results/'} stores the results of our experiments in CSV files. It is further subdivided into folders for each dataset, with additional subfolders for specific cases.
+    \item \textbf{`/src/'} includes has the main codebase for the experiments. 
+    \item \textbf{`main.py'} is thee primary script needed to reproduce the experimental results, once the processed data is saved in the /Data/ directory. This script calls the necessary functions from the \texttt{/src/} directory.
+\end{itemize}
+For detailed instructions on reproducing the results, including setting up the environment and running the code, please refer to the \texttt{README.md} file in the GitHub repository.
 \newpage
     
 % ------------------------------------------------------------------------------
