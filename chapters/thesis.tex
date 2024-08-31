@@ -209,7 +209,7 @@
 
 \newcommand{\mytitle}{The Fragility of Sparsity}
 \newcommand{\myname}{Anjali Sarawgi}
-\newcommand{\mysupervisor}{Mr. Vincent Stark}
+\newcommand{\mysupervisor}{Prof. Vincent Stark}
 
 \usepackage[a4paper, width = 160mm, top = 35mm, bottom = 30mm, 
 bindingoffset = 0mm]{geometry}
@@ -235,7 +235,10 @@ bindingoffset = 0mm]{geometry}
 \setlength{\headheight}{14.5pt}
 \setlength{\parindent}{0pt}
 \interfootnotelinepenalty = 10000
-
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue
+}
 % ------------------------------------------------------------------------------
 % MAIN -------------------------------------------------------------------------
 % ------------------------------------------------------------------------------
@@ -294,7 +297,12 @@ Supervised by \mysupervisor
 \newpage
 
 \begin{abstract}
-Sparsity-based estimators, such as Lasso (Least Absolute Shrinkage and Selection Operator) have become popular in modern data analysis due to their ability to handle high dimensional datasets by selecting a subset of relevant variables. However, in real world scenarios the datasets often come with added complexities which may challenge the robustness of sparsity-based estimators. This paper based on the original paper "The Fragility of Sparsity" investigates the robustness and reliability of sparsity-based estimators, particularly Lasso in high dimensional causal inference setting with complex data structure. Through a real world data stimulation study that varies both in size and complexity of the datasets, this paper aims to assess the behaviour of these estimators and their effectiveness in practical applications. 
+This seminar paper critically examines the robustness and reliability of Sparsity-
+Based Estimators (SBEs), such as Lasso, as discussed in the original paper, \textit{``The
+Fragility of Sparsity"}. While SBEs have become widely used for handling high-
+dimensional datasets by selecting a subset of relevant variables, their performance
+is also sensitive to various factors and choices of normalization strategies. In addition to summarising and clarifying the main findings of the original paper, this study evaluates the performance of SBEs for different conditions, such as varying dataset sizes, dimensionality settings, and normalization techniques. The findings reveal that SBEs exhibit significant sensitivity to these factors, often resulting in high variability in the estimates. This paper also explores how these estimators perform in machine-learning contexts, highlighting the challenges they face in maintaining predictive accuracy and performance. The code is available at \url{https://github.com/anjalisarawgi/fragility_of_sparsity_review}
+
 
 \end{abstract}
 
