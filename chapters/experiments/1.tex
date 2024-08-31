@@ -64,4 +64,40 @@ The table shows how the estimated treatment coefficients, standard errors, and t
     \item As $p$ approaches $n$, the number of selected variables selected varies significantly for different normalizations i.e. from 229 to as high as 271. This inconsistency reflects that different normalizations also change how many variables the lasso selects. This could highly affect our estimates. A similar behavior is seen in the case when $p>n$. This highlights the instability of the model in high-dimensional settings. 
 \end{itemize}
 
-The results in Table 1 are consistent with the findings of the original paper ``The Fragility of Sparsity" as it shows the sensitivity of sparsity-based estimators in high-dimensional settings. Specifically, as the number of predictors increases relative to the number of observations, both the treatment coefficient estimates and the number of variables selected by Lasso estimator demonstrates high variability. This reflects the fragility of SBEs when applied to high dimensional data. However, the standard errors of the SBEs don't decrease as $p$ gets larger. This contradicts the findings of the original paper on efficiency gains, which states that the standard errors of SBEs are supposed to decrease as the number of dimensions increases. Instead, we observe that the standard errors remain high, suggesting less confidence in the estimates. 
+The results in Table 1 are consistent with the findings of the original paper ``The Fragility of Sparsity" as it shows the sensitivity of sparsity-based estimators in high-dimensional settings. Specifically, as the number of predictors increases relative to the number of observations, both the treatment coefficient estimates and the number of variables selected by Lasso estimator demonstrate high variability. This reflects the fragility of SBEs when applied to high-dimensional data. However, the standard errors of the SBEs don't decrease as $p$ gets larger. This contradicts the findings of the original paper on efficiency gains, which states that the standard errors of SBEs are supposed to decrease as the number of dimensions increases. Instead, we observe that the standard errors remain high, suggesting less confidence in the estimates. \\
+\\
+\textit{However, when these tests were conducted with different Lasso regularization parameter values, the results significantly changed. In this experiment, if we were to change the alpha from 1.0 to use LassoCV, which automatically tunes the hyperparameters for Lasso, we observe very different results.} \\
+\\
+\textbf{Results with LassoCV: }
+When we replace the default Lasso regularization parameter (alpha = 1.0) with LassoCV, our results change significantly. The use of LassoCV leads to more stable results across all three cases, yielding similar treatment coefficient estimates and standard errors. Additionally, the number of variables selected by Lasso also reduces to a more consistent set as seen in Table 2. \\
+\begin{table}[h!]
+\renewcommand{\arraystretch}{1.5}
+\centering
+\begin{tabular}{||l l l l l||} 
+ \hline
+ \hline
+ Case & Drop1 & Drop2 & Demean & Median \\ [0.5ex] 
+ \hline \hline
+ \multicolumn{5}{||c||}{(i) Treatment Coefficient Estimate} \\ [0.5ex]
+ Original $p$ ($p = 10$) & 1795.55 & 1795.55 & 1772.60 & 1795.55  \\ 
+ $p$ close to $n$ ($p = 366$) & 1791.82 & 1791.82 & 1794.34 & 1791.82 \\
+ $p$ more than $n$ (p = 366) & 1791.82 & 1791.82 & 1794.34 & 1791.82  \\
+ \hline
+ \multicolumn{5}{||c||}{(ii)Treatment Coefficient Standard Error} \\ [0.5ex]
+ Original $p$ ($p$ = 10) & 631.20 & 631.20 & 632.60 & 631.20 \\ 
+ % $p$ close to $n$ (p = 188) : & 793.01 & 795.445 & 783.22 & 793.778 & 792.39 \\
+ $p$ close to $n$ (p = 366) & 633.66 & 633.66& 632.85 & 633.663  \\
+ $p$ more than $n$ (p = 366) & 633.66 & 633.66& 632.85 & 633.663 \\
+ \hline
+ \multicolumn{5}{||c||}{(iii) Number of Variables Selected by Lasso} \\ [0.5ex]
+ Original $p$ ($p = 10$) & 1 & 1 & 2 & 1 \\ 
+ $p$ close to $n$ ($p = 366$) & 1 & 1 & 0 & 1 \\
+ $p$ more than $n$ ($p = 366$) & 1 & 1 & 0 & 1 \\
+ \hline \hline
+\end{tabular}
+\caption{\textit{Estimated Treatment Coefficients and Standard Errors using different specifications for the Lalonde Dataset where $n = 445$.} The table reports treatment coefficient estimates, their standard errors, and the number of variables selected by Lasso under the three scenarios. LassoCV package from a python package scikit-learn is used.}
+% \textcolor{red}{idk why standard errors for sbes also increase}
+\label{table:1}
+\end{table}
+
+Moreover, these results also indicate that once we use a properly tuned Lasso regularization parameter (alpha), the fragility of the SBEs for different normalization methods significantly reduces. The estimators become more stable even in high-dimensional scenarios. This means that Lasso is effectively able to handle high dimensional scenarios with similar standard errors throughout. Thereby we can consider the fact that an appropriate regularization parameter may make a significant difference in our results. 

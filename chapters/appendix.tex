@@ -11,6 +11,72 @@
 
 % \end{thebibliography}
 
+\subsection{Results with LassoCV (Lalonde Dataset) }
+When we replace the default Lasso regularization parameter (alpha = 1.0) with LassoCV, our results change significantly. The use of LassoCV leads to more stable results across all three cases, yielding similar treatment coefficient estimates and standard errors. Additionally, the number of variables selected by Lasso also reduces to a more consistent set as seen in Table 6. 
+
+\begin{table}[h!]
+\renewcommand{\arraystretch}{1.5}
+\centering
+\begin{tabular}{||l l l l l||} 
+ \hline
+ \hline
+ Case & Drop1 & Drop2 & Demean & Median \\ [0.5ex] 
+ \hline \hline
+ \multicolumn{5}{||c||}{(i) Treatment Coefficient Estimate} \\ [0.5ex]
+ Original $p$ ($p = 10$) & 1795.55 & 1795.55 & 1772.60 & 1795.55  \\ 
+ $p$ close to $n$ ($p = 366$) & 1791.82 & 1791.82 & 1794.34 & 1791.82 \\
+ $p$ more than $n$ (p = 366) & 1791.82 & 1791.82 & 1794.34 & 1791.82  \\
+ \hline
+ \multicolumn{5}{||c||}{(ii)Treatment Coefficient Standard Error} \\ [0.5ex]
+ Original $p$ ($p$ = 10) & 631.20 & 631.20 & 632.60 & 631.20 \\ 
+ % $p$ close to $n$ (p = 188) : & 793.01 & 795.445 & 783.22 & 793.778 & 792.39 \\
+ $p$ close to $n$ (p = 366) & 633.66 & 633.66& 632.85 & 633.663  \\
+ $p$ more than $n$ (p = 366) & 633.66 & 633.66& 632.85 & 633.663 \\
+ \hline
+ \multicolumn{5}{||c||}{(iii) Number of Variables Selected by Lasso} \\ [0.5ex]
+ Original $p$ ($p = 10$) & 1 & 1 & 2 & 1 \\ 
+ $p$ close to $n$ ($p = 366$) & 1 & 1 & 0 & 1 \\
+ $p$ more than $n$ ($p = 366$) & 1 & 1 & 0 & 1 \\
+ \hline \hline
+\end{tabular}
+\caption{\textit{Estimated Treatment Coefficients and Standard Errors using different specifications for the Lalonde Dataset where $n = 445$.} The table reports treatment coefficient estimates, their standard errors, and the number of variables selected by Lasso under the three scenarios. LassoCV from scikit-learn used.}
+% \textcolor{red}{idk why standard errors for sbes also increase}
+\label{table:1}
+\end{table}
+
+Moreover, these results also indicate that once we use an appropriate lasso, the fragility of the SBEs for different normalization methods significantly reduces. The estimators become more stable even in high-dimensional scenarios. This means that Lasso is effectively able to handle high dimensional scenarios with similar standard errors throughout. Thereby we can consider the fact that an appropriate regularization parameter may make a significant difference in our results. 
+
+\subsection{tests for lasso = 1 }
+\begin{table}[h!]
+\renewcommand{\arraystretch}{1.5}
+\centering
+\begin{tabular}{||l l l l l||} 
+ \hline
+ \hline
+ Test & Drop1 & Drop2 &  Demean & Median \\ [0.5ex] 
+ \hline \hline
+ \multicolumn{5}{||c||}{(i)  $p$ close to $n$ - lassocv} \\ [0.5ex]
+ Hausman Test & 0.05339 & 0.085871 & 0.0973 & 0.04443 \\ 
+ Residual Test: & 0.998194 & 0.9967  & 0.9975 & 0.998297 \\ [1ex] 
+ \hline
+ \multicolumn{5}{||c||}{(ii)$p$ close to $n$ - alpha = 1.0} \\ [0.5ex]
+ Hausman Test & 0.2634 & 0.0009 &  0.431 &  0.1862 \\ 
+ Residual Test & - & 1.0 & 1.0 & - \\
+
+ \hline \hline
+\end{tabular}
+\caption{\textit{P-values from Hausmann and Residual Tests for Sparsity Assumption on the Lalonde Dataset}. The table presents the p-values for two tests (Hausman and Residual) under different normalizations (Drop1, Drop2, Demean, Median) across two cases: (i) the original number of predictors ($p$) and (ii) when $p$ is close to the number of observations ($n$).The tests assess the validity of the sparsity assumption with varying dimensions. We use LassoCV from scikit-lean to find the optimal alpha value in this case. \textcolor{red}{explain why lassocv}}
+% \caption{LALONDE DATASET: p value of the two tests on both the datasets. Note that we used the cross validated lasso for lalonde dataset\\
+% \\
+% for lalonde we accept the null hypothesis and say that the difference has no difference and say the sparsity assumptions hold (makes sense)
+
+% for communities and crime we reject the null hypothesis and say the sparsity assumption does not hold (makes sense too cause we want all variables) 
+% }
+% \textcolor{red}{we cannot do a more than n case because ols benchmark is not valid}
+
+\label{table:1}
+\end{table}
+
 \subsection{Evaluating OLS behaviour}
 \begin{table}[h!]
 \renewcommand{\arraystretch}{1.5}
