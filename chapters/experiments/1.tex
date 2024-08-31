@@ -66,9 +66,8 @@ The table shows how the estimated treatment coefficients, standard errors, and t
 
 The results in Table 1 are consistent with the findings of the original paper ``The Fragility of Sparsity" as it shows the sensitivity of sparsity-based estimators in high-dimensional settings. Specifically, as the number of predictors increases relative to the number of observations, both the treatment coefficient estimates and the number of variables selected by Lasso estimator demonstrate high variability. This reflects the fragility of SBEs when applied to high-dimensional data. However, the standard errors of the SBEs don't decrease as $p$ gets larger. This contradicts the findings of the original paper on efficiency gains, which states that the standard errors of SBEs are supposed to decrease as the number of dimensions increases. Instead, we observe that the standard errors remain high, suggesting less confidence in the estimates. \\
 \\
-\textit{However, when these tests were conducted with different Lasso regularization parameter values, the results significantly changed. In this experiment, if we were to change the alpha from 1.0 to use LassoCV, which automatically tunes the hyperparameters for Lasso, we observe very different results.} \\
+However, when these tests were conducted with different Lasso regularization parameter values, the results significantly changed. In this experiment, if we were to change the alpha from 1.0 to use LassoCV, which automatically tunes the hyperparameters for Lasso, we observe very different results\\
 \\
-\textbf{Results with LassoCV: }
 When we replace the default Lasso regularization parameter (alpha = 1.0) with LassoCV, our results change significantly. The use of LassoCV leads to more stable results across all three cases, yielding similar treatment coefficient estimates and standard errors. Additionally, the number of variables selected by Lasso also reduces to a more consistent set as seen in Table 2. \\
 \begin{table}[h!]
 \renewcommand{\arraystretch}{1.5}
@@ -100,4 +99,5 @@ When we replace the default Lasso regularization parameter (alpha = 1.0) with La
 \label{table:1}
 \end{table}
 
-Moreover, these results also indicate that once we use a properly tuned Lasso regularization parameter (alpha), the fragility of the SBEs for different normalization methods significantly reduces. The estimators become more stable even in high-dimensional scenarios. This means that Lasso is effectively able to handle high dimensional scenarios with similar standard errors throughout. Thereby we can consider the fact that an appropriate regularization parameter may make a significant difference in our results. 
+\textbf{Critical Note:} Moreover, these results also indicate that once we use a properly tuned Lasso regularization parameter (alpha), the fragility of the SBEs for different normalization methods significantly reduces. The estimators become more stable even in high-dimensional scenarios. This means that Lasso is effectively able to handle high-dimensional scenarios with similar standard errors throughout. Thereby we can consider the fact that an appropriate regularization parameter may make a significant difference in our results. 
+

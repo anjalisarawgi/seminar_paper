@@ -17,23 +17,15 @@ We evaluate the assumption of sparsity using the Hausman and Residual tests intr
  Residual Test: & 0.9981 & 0.9967  & 0.9975 & 0.9982 \\ [1ex] 
  \hline \hline
 \end{tabular}
-\caption{\textit{P-values from Hausmann and Residual Tests for Sparsity Assumption on the Lalonde Dataset}. The table presents the p-values for two tests (Hausman and Residual) under different normalizations (Drop1, Drop2, Demean, Median) across two cases: (i) the original number of predictors ($p$) and (ii) when $p$ is close to the number of observations ($n$).The tests assess the validity of the sparsity assumption with varying dimensions. We use LassoCV from scikit-lean to find the optimal alpha value in this case. }
-% \caption{LALONDE DATASET: p value of the two tests on both the datasets. Note that we used the cross validated lasso for lalonde dataset\\
-% \\
-% for lalonde we accept the null hypothesis and say that the difference has no difference and say the sparsity assumptions hold (makes sense)
-
-% for communities and crime we reject the null hypothesis and say the sparsity assumption does not hold (makes sense too cause we want all variables) 
-% }
-% \textcolor{red}{we cannot do a more than n case because ols benchmark is not valid}
-
+\caption{\textit{P-values from Hausmann and Residual Tests for Sparsity Assumption on the Lalonde Dataset}. The table presents the p-values for two tests (Hausman and Residual) under different normalizations (Drop1, Drop2, Demean, Median) across two cases: (i) the original number of predictors ($p$) and (ii) when $p$ is close to the number of observations ($n$).The tests assess the validity of the sparsity assumption with varying dimensions. LassoCV from scikit-learn is used to determine the optimal alpha value. }
 \label{table:1}
 \end{table}
 
 \textbf{Interpretation:} When we test for original predictors $p$, the p-values for both Hausman and Residual tests are relatively high (greater than 0.1 at 10\% level of significance). This means that we do not reject the null hypothesis and suggests that the difference between OLS and SBE estimates is not statistically significant. This thereby implies that the model is consistent with the sparsity assumption in this case. \\
 \\
 When $p$ increases in dimensions and approaches n, the Hausman test yields lower p-values which range from 0.04443 to 0.0973. Under a 10\% level of significance, we would reject the null hypothesis. This suggests that the sparsity does not hold well when $p$ increases in dimensions and approaches $n$.\\
-However, the Residual test p-values are very high (close to 1), indicating that the test does not find evidence against the sparsity assumption in this setting and the sparsity assumption may hold. This means that our residual sum of squares (RSS) for both OLS and SBE methods are not very different. This indicates that SBE does not give a higher error despite even after variable selection, supporting the assumption of sparsity.\\
+However, the Residual test p-values are very high (close to 1), indicating that the test does not find evidence against the sparsity assumption in this setting and the sparsity assumption may hold. This means that our residual sum of squares (RSS) for both OLS and SBE methods are not very different. This indicates that SBE does not give a higher error even after variable selection, supporting the assumption of sparsity.\\
 \\
 Moreover, with a small number of predictors, both tests support the sparsity assumption. However, as $p \approx n$, the Hausman test suggests rejecting the sparsity assumption, while the Residual test does not, leading to unclear interpretations. Additionally, for cases where $p>n$, these tests cannot be evaluated because the OLS benchmark is not valid.\\
 \\
-The results in Table 3 introduce some ambiguity, making the conclusion less clear. This ambiguity may stem from the artificial addition of features, which could dilute the true sparse structure and make the sparsity assumption misleading in higher dimensions. This is important to consider because even the original paper uses similar methods to increase the features of the data. The relevance of such transformations has to be analyzed more carefully, and these tests should be applied to datasets that are naturally high-dimensional from the start to better assess the  validity of the sparsity assumption.\\
+\textbf{Critical Note:} The results in Table 3 introduce some ambiguity, making the conclusion less clear. While the results in Table 3 may be valid, it is also possible that this ambiguity stems from the artificial addition of features. These transformations could change the true sparse structure and make the sparsity assumption less reliable in higher dimensions. This is important to consider because even the original paper uses similar methods to increase the features of the data. The relevance of such transformations has to be analyzed more carefully, and these tests should be applied to datasets that are naturally high-dimensional from the start to better assess the  validity of the sparsity assumption. 

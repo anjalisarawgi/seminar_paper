@@ -1,17 +1,15 @@
-To understand the behaviour of sparsity based estimators in a machine learning context, I conducted two experiments. These tests aimed to test how (i) standard errors behave for varying number of observations ($n$) and (ii) to evaluate whether the different normalization methods affect the predictive power of the models measured by mean squared error (MSE). \\
+To understand the behavior of sparsity-based estimators in a machine-learning context, I conducted two experiments. These tests aimed to test how (i) standard errors behave for varying number of observations ($n$) and (ii) to evaluate whether the different normalization methods affect the predictive power of the models measured by mean squared error (MSE). \\
 \\
 For these tests, we use the \textbf{Communities and Crime Dataset}. This dataset provides us with a large number of observations which is useful to evaluate how the results change for different sample sizes.\\
 \\
-Note: While communities and crime dataset consists of approximately 1,900 obser-
-vations, which is smaller than typical datasets used in machine learning evaluations,
-it was chosen deliberately to test the sparsity assumption in high-dimensional cases.
-For testing the findings of the main paper, it often requires us for our number of predictors to be extremely high, approaching the number of observations n itself. Using a much larger dataset, such as one with 20,000 observations would necessitate increasing p to be around 10,000 or more. This could result in highly redundant datasets due to the excessive number of artificially added features. The communities and Crime dataset thus serves as an ideal compromise, providing sufficient observations to evaluate the prediction performance without introducing undue redundancy.\\
+\textit{Note:} While the communities and crime dataset consists of approximately 1,900 observations, which is smaller than typical datasets used in machine learning evaluations,
+it was chosen intentionally to test the sparsity assumption in high-dimensional cases.
+Testing the findings of the main paper, often requires the number of predictors to be extremely high, approaching the number of observations itself. Using a much larger dataset, such as one with 20,000 observations would necessitate increasing $p$ to be around 10,000 or more. This could result in highly redundant datasets due to the excessive number of artificially added features. The Communities and Crime dataset thus serve as an ideal compromise, providing sufficient observations to evaluate the prediction performance without introducing unneeded redundancy.\\
 \\
 \textbf{(A) Testing for varying number of observations ($n$)}\\
 To examine the effect of varying sample sizes on the fragility of SBEs, we
 performed experiments using different sample sizes from the Communities
-and Crime dataset: the full dataset, and subsets of 150, 500, 800, 1000 and 1500. This enables us to evaluate whether the results where consistent
-across different sample sizes and provided insights into the robustness of SBEs for
+and Crime dataset: the full dataset with 1,892 observations, and subsets of 150, 500, 800, 1000, and 1500. This allows us to evaluate whether the results were consistent across different sample sizes and provided insights into the robustness of SBEs for
 varying dataset sizes. \\
 \begin{table}[h!]
 \renewcommand{\arraystretch}{1.5}
@@ -28,18 +26,20 @@ varying dataset sizes. \\
  \hline \hline
 \end{tabular}%
 }
-\caption{Treatment Standard Error for Communities and crime dataset}
+\caption{\textit{Treatment Standard Error for Communities and Crime Dataset.} The table presents the standard errors for sparsity-based estimators across different sample sizes (150, 500, 800, 1000, 1500, and full dataset). Each standard error value has been multiplied by 100\% for better interpretability. The results are based on the standard case of dropping the first category along with no offset normalization.}
 \label{table:1}
 \end{table}
 
-\textbf{Interpretation:} These results are for dropping the first reference category along with no offset normalization for the categorical variables. The table shows that as we decrease the number of observations $n$, the standard error also continues to increase. This pattern indicates that larger sample sizes help stabilize the estimates from sparsity based estimators (SBEs), reducing their fragility. Smaller sample sizes on the other hand are associated with larger standard errors which indicates greater variability and less reliable estimates. \\
+\textbf{Interpretation:} Table 4 shows that as we decrease the number of observations $n$, the standard error also continues to increase. This pattern indicates that larger sample sizes help stabilize the estimates from sparsity-based estimators (SBEs), reducing their fragility. Smaller sample sizes on the other hand are associated with larger standard errors which indicates greater variability and less reliable estimates. \\
 \\
-More intuitively, this result supports the fact that as the ratio of p to n reduces, the model performs better.\\
+More intuitively, this result supports the fact that as the ratio of $p$ to $n$ reduces, the model performs better. This reinforces the importance of adequate sample size for the stability of sparsity-based estimates.\\
 \\
-\textit{Note:} The communities and crime dataset is not a standard causal inference dataset. When testing with "pop" (population) as the treatment variable, we observed that the coefficients for the treatment are very small. This outcome suggests that there is a minimal causal effect of the treatment on the outcome variable. However, this should not affect our findings on the robustness of SBEs because our focus it to study the behaviour of the standard errors rather than the causal effect size itself.\\
+Additionally, I also tried to maintain a consistent ratio of 80\% of $p$ to $n$ for each subset to analyze the effect of the dataset sizes on high dimensional scenarios. However, this approach made the results difficult to interpret and less comparable because it essentially created different datasets with different structures. This also highlights the challenge of drawing proper conclusions when comparing models with different predictors to outcomes ratios.\\
+\\
+\textit{Note:} The communities and crime dataset is not a standard causal inference dataset. When testing with ``pop" (population) as the treatment variable, we observed that the coefficients for the treatment were very small. This outcome suggests that there is a minimal causal effect of the treatment on the outcome variable. However, this should not affect our findings on the robustness of SBEs because our focus is to study the behavior of the standard errors rather than the causal effect size itself.\\
 \\
 \textbf{(B) Predictive Performance Analysis }\\
-This experiment is aimed to evaluate the impact of SBEs within a machine learning context, where the primary focus is the prediction performance of models. For classification tasks, prediction performance can be assessed using metrics such as accuracy, while for regression tasks, metrics such as Mean Squared Error (MSE) or R-Squared are usually used. Our experiments focused on these predictive measures to evaluate if fragile estimates also impact the overall MSE and R squared of the model.
+This experiment is aimed to evaluate the impact of SBEs within a machine learning context, where the primary focus is the prediction performance of models. For classification tasks, prediction performance can be assessed using metrics such as accuracy, while for regression tasks, metrics such as Mean Squared Error (MSE) or R-squared are usually used. Our experiments focused on these predictive measures to evaluate if fragile estimates also impact the overall MSE and R-squared of the model.
 \begin{table}[h!]
 \renewcommand{\arraystretch}{1.5}
 \centering
@@ -48,21 +48,21 @@ This experiment is aimed to evaluate the impact of SBEs within a machine learnin
  \hline
  Case: Original p ($p \ll n$) & Drop1 & Drop2 & Drop3 & Demean & Median \\ [0.5ex] 
  \hline \hline
- Mean Squared Error (MSE) & 47791.44 & 47839.11 & 48066.58 & 46633.518 & 46376.036 \\ 
+ Mean Squared Error (MSE) & 47791.44 & 47839.11 & 48066.58 & 46633.51 & 46376.03 \\ 
  R-Squared (R2) & 0.8701 & 0.8699 & 0.8693 & 0.8732 & 0.8739 \\
  \hline \hline
 \end{tabular}
-\caption{Mean squared error and R squared measures for SBE method predictions for Communities and Crime Dataset. This is for the original case where p is much lower than n.}
+\caption{\textit{Mean squared error and R squared measures for SBE method predictions for Communities and Crime Dataset.} This table shows the results for the original case where $p$ is much lower than $n$.}
 \label{table:1}
 \end{table}
 
 
 \textbf{Interpretation:} 
-The mean squared error (MSE) varies across different normalization's for the sparsity based estimates. However, the magnitude of these variations is relatively small which suggests that these differences may not be statistically significant. Further analysis in different scenarios might be required to check if these differences are meaningful. \\
+The Mean Squared Error (MSE) varies across different normalizations for the sparsity-based estimates. However, the magnitude of these variations is relatively small which suggests that these differences may not be very significant. Further analysis in different scenarios might be required to check if these differences are meaningful. \\
 \\
-The R squared remains consistent across the different normalization methods. This suggests that explainability of the model as indicated by R-squared does not vary much for different normalization choices. \\
+Further, the R squared remains consistent across the different normalization methods. This suggests that the explainability of the model as indicated by R-squared does not vary much for different normalization choices. \\
 \\
-However, if we choose the case where p is close to n, our MSE starts to fluctuate alot. This is the case seen even for a simple scenario of choosing a reference category differently which is a choice we usually overlook. 
+However, the results in Table 6 show that if we choose the high dimensional case where $p$ is close to $n$, the MSE starts to fluctuate a lot. This variability is observed even for what appear to be minor decisions, such as the choice of the reference category - decisions that are often overlooked. Additionally, the MSE of OLS in such high-dimensional scenarios only slightly fluctuates, indicating greater consistency is less fragile.
 \begin{table}[h!]
 \renewcommand{\arraystretch}{1.5}
 \centering
@@ -73,10 +73,10 @@ However, if we choose the case where p is close to n, our MSE starts to fluctuat
  \hline \hline
  Mean Squared Error (SBE) & 1989043.14 & 2797171.52 & 1345545374.66 & 962625.71 \\ 
  Mean Squared Error (OLS) & 1120277.30 & 1245272.190 & 1413348.61 & 1240219.09 \\ 
-
  \hline \hline
 \end{tabular}
-\caption{Mean squared error and R squared measures for SBE method predictions for Communities and Crime Dataset}
+\caption{\textit{Mean squared error and R squared measures for SBE and OLS predictions on the Communities and Crime Dataset.} This table shows results for the case there $p$ is close to $n$.} 
 \label{table:1}
 \end{table}
-This may raise serious concerns about the fragility of estimators even in the context of machine learning when we have very high dimensional data. Also note that in these cases, the r squared also becomes egetive showig complexities in the explainability of the models. \textcolor{red}{Note, this is for for a low lasso regularization parameter +++ ols is more consistent and less fragile}
+\\
+These results may raise serious concerns about the fragility of SBEs even in the context of machine learning when we have very high dimensional data. While SBEs may perform adequately in low-dimensional settings, their fragility in higher dimensions suggests that their use in such contexts should be approached with caution. To make a more confident statement about the limitations of SBEs, it is important to conduct more experiments on other datasets, especially those with naturally high dimensions, to validate these findings and to evaluate the generalisability of the observed fragility.

@@ -11,42 +11,75 @@
 
 % \end{thebibliography}
 
-\subsection{Results with LassoCV (Lalonde Dataset) }
-When we replace the default Lasso regularization parameter (alpha = 1.0) with LassoCV, our results change significantly. The use of LassoCV leads to more stable results across all three cases, yielding similar treatment coefficient estimates and standard errors. Additionally, the number of variables selected by Lasso also reduces to a more consistent set as seen in Table 6. 
+% \subsection{Results with LassoCV (Lalonde Dataset) }
+% When we replace the default Lasso regularization parameter (alpha = 1.0) with LassoCV, our results change significantly. The use of LassoCV leads to more stable results across all three cases, yielding similar treatment coefficient estimates and standard errors. Additionally, the number of variables selected by Lasso also reduces to a more consistent set as seen in Table 6. 
 
-\begin{table}[h!]
-\renewcommand{\arraystretch}{1.5}
-\centering
-\begin{tabular}{||l l l l l||} 
- \hline
- \hline
- Case & Drop1 & Drop2 & Demean & Median \\ [0.5ex] 
- \hline \hline
- \multicolumn{5}{||c||}{(i) Treatment Coefficient Estimate} \\ [0.5ex]
- Original $p$ ($p = 10$) & 1795.55 & 1795.55 & 1772.60 & 1795.55  \\ 
- $p$ close to $n$ ($p = 366$) & 1791.82 & 1791.82 & 1794.34 & 1791.82 \\
- $p$ more than $n$ (p = 366) & 1791.82 & 1791.82 & 1794.34 & 1791.82  \\
- \hline
- \multicolumn{5}{||c||}{(ii)Treatment Coefficient Standard Error} \\ [0.5ex]
- Original $p$ ($p$ = 10) & 631.20 & 631.20 & 632.60 & 631.20 \\ 
- % $p$ close to $n$ (p = 188) : & 793.01 & 795.445 & 783.22 & 793.778 & 792.39 \\
- $p$ close to $n$ (p = 366) & 633.66 & 633.66& 632.85 & 633.663  \\
- $p$ more than $n$ (p = 366) & 633.66 & 633.66& 632.85 & 633.663 \\
- \hline
- \multicolumn{5}{||c||}{(iii) Number of Variables Selected by Lasso} \\ [0.5ex]
- Original $p$ ($p = 10$) & 1 & 1 & 2 & 1 \\ 
- $p$ close to $n$ ($p = 366$) & 1 & 1 & 0 & 1 \\
- $p$ more than $n$ ($p = 366$) & 1 & 1 & 0 & 1 \\
- \hline \hline
-\end{tabular}
-\caption{\textit{Estimated Treatment Coefficients and Standard Errors using different specifications for the Lalonde Dataset where $n = 445$.} The table reports treatment coefficient estimates, their standard errors, and the number of variables selected by Lasso under the three scenarios. LassoCV from scikit-learn used.}
-% \textcolor{red}{idk why standard errors for sbes also increase}
-\label{table:1}
-\end{table}
+% \begin{table}[h!]
+% \renewcommand{\arraystretch}{1.5}
+% \centering
+% \begin{tabular}{||l l l l l||} 
+%  \hline
+%  \hline
+%  Case & Drop1 & Drop2 & Demean & Median \\ [0.5ex] 
+%  \hline \hline
+%  \multicolumn{5}{||c||}{(i) Treatment Coefficient Estimate} \\ [0.5ex]
+%  Original $p$ ($p = 10$) & 1795.55 & 1795.55 & 1772.60 & 1795.55  \\ 
+%  $p$ close to $n$ ($p = 366$) & 1791.82 & 1791.82 & 1794.34 & 1791.82 \\
+%  $p$ more than $n$ (p = 366) & 1791.82 & 1791.82 & 1794.34 & 1791.82  \\
+%  \hline
+%  \multicolumn{5}{||c||}{(ii)Treatment Coefficient Standard Error} \\ [0.5ex]
+%  Original $p$ ($p$ = 10) & 631.20 & 631.20 & 632.60 & 631.20 \\ 
+%  % $p$ close to $n$ (p = 188) : & 793.01 & 795.445 & 783.22 & 793.778 & 792.39 \\
+%  $p$ close to $n$ (p = 366) & 633.66 & 633.66& 632.85 & 633.663  \\
+%  $p$ more than $n$ (p = 366) & 633.66 & 633.66& 632.85 & 633.663 \\
+%  \hline
+%  \multicolumn{5}{||c||}{(iii) Number of Variables Selected by Lasso} \\ [0.5ex]
+%  Original $p$ ($p = 10$) & 1 & 1 & 2 & 1 \\ 
+%  $p$ close to $n$ ($p = 366$) & 1 & 1 & 0 & 1 \\
+%  $p$ more than $n$ ($p = 366$) & 1 & 1 & 0 & 1 \\
+%  \hline \hline
+% \end{tabular}
+% \caption{\textit{Estimated Treatment Coefficients and Standard Errors using different specifications for the Lalonde Dataset where $n = 445$.} The table reports treatment coefficient estimates, their standard errors, and the number of variables selected by Lasso under the three scenarios. LassoCV from scikit-learn used.}
+% % \textcolor{red}{idk why standard errors for sbes also increase}
+% \label{table:1}
+% \end{table}
 
-Moreover, these results also indicate that once we use an appropriate lasso, the fragility of the SBEs for different normalization methods significantly reduces. The estimators become more stable even in high-dimensional scenarios. This means that Lasso is effectively able to handle high dimensional scenarios with similar standard errors throughout. Thereby we can consider the fact that an appropriate regularization parameter may make a significant difference in our results. 
+% Moreover, these results also indicate that once we use an appropriate lasso, the fragility of the SBEs for different normalization methods significantly reduces. The estimators become more stable even in high-dimensional scenarios. This means that Lasso is effectively able to handle high dimensional scenarios with similar standard errors throughout. Thereby we can consider the fact that an appropriate regularization parameter may make a significant difference in our results. 
 
-\subsection{tests for lasso = 1 }
+
+% \subsection{tests for lasso = 1 }
+% \begin{table}[h!]
+% \renewcommand{\arraystretch}{1.5}
+% \centering
+% \begin{tabular}{||l l l l l||} 
+%  \hline
+%  \hline
+%  Test & Drop1 & Drop2 &  Demean & Median \\ [0.5ex] 
+%  \hline \hline
+%  \multicolumn{5}{||c||}{(i)  $p$ close to $n$ - lassocv} \\ [0.5ex]
+%  Hausman Test & 0.05339 & 0.085871 & 0.0973 & 0.04443 \\ 
+%  Residual Test: & 0.998194 & 0.9967  & 0.9975 & 0.998297 \\ [1ex] 
+%  \hline
+%  \multicolumn{5}{||c||}{(ii)$p$ close to $n$ - alpha = 1.0} \\ [0.5ex]
+%  Hausman Test & 0.2634 & 0.0009 &  0.431 &  0.1862 \\ 
+%  Residual Test & - & 1.0 & 1.0 & - \\
+
+%  \hline \hline
+% \end{tabular}
+% \caption{\textit{P-values from Hausmann and Residual Tests for Sparsity Assumption on the Lalonde Dataset}. The table presents the p-values for two tests (Hausman and Residual) under different normalizations (Drop1, Drop2, Demean, Median) across two cases: (i) the original number of predictors ($p$) and (ii) when $p$ is close to the number of observations ($n$).The tests assess the validity of the sparsity assumption with varying dimensions. We use LassoCV from scikit-lean to find the optimal alpha value in this case. \textcolor{red}{explain why lassocv}}
+% % \caption{LALONDE DATASET: p value of the two tests on both the datasets. Note that we used the cross validated lasso for lalonde dataset\\
+% % \\
+% % for lalonde we accept the null hypothesis and say that the difference has no difference and say the sparsity assumptions hold (makes sense)
+
+% % for communities and crime we reject the null hypothesis and say the sparsity assumption does not hold (makes sense too cause we want all variables) 
+% % }
+% % \textcolor{red}{we cannot do a more than n case because ols benchmark is not valid}
+
+% \label{table:1}
+% \end{table}
+
+
+\subsection{Evaluating for different Lasso regularization parameter specifications (cont.)}
 \begin{table}[h!]
 \renewcommand{\arraystretch}{1.5}
 \centering
@@ -55,51 +88,52 @@ Moreover, these results also indicate that once we use an appropriate lasso, the
  \hline
  Test & Drop1 & Drop2 &  Demean & Median \\ [0.5ex] 
  \hline \hline
- \multicolumn{5}{||c||}{(i)  $p$ close to $n$ - lassocv} \\ [0.5ex]
- Hausman Test & 0.05339 & 0.085871 & 0.0973 & 0.04443 \\ 
- Residual Test: & 0.998194 & 0.9967  & 0.9975 & 0.998297 \\ [1ex] 
+ \multicolumn{5}{||c||}{(i) alpha = 10} \\ [0.5ex]
+ Hausman Test & 0.22052 & 0.47046 & 0.3609 & 0.2580 \\ 
+ Residual Test & 1.0 & 1.0 & 1.0 & 1.0 \\
  \hline
- \multicolumn{5}{||c||}{(ii)$p$ close to $n$ - alpha = 1.0} \\ [0.5ex]
- Hausman Test & 0.2634 & 0.0009 &  0.431 &  0.1862 \\ 
- Residual Test & - & 1.0 & 1.0 & - \\
-
+ \multicolumn{5}{||c||}{(ii) LassoCV (Cross-validated alpha) } \\ [0.5ex]
+ Hausman Test & 5.84e-13 & 5.84e-13 & 3.66e-13 & 1.23e-13 \\ 
+ Residual Test: & 1.11e-16 & 1.11e-16  & 1.11e-16 & 1.11e-16 \\ [1ex] 
  \hline \hline
 \end{tabular}
-\caption{\textit{P-values from Hausmann and Residual Tests for Sparsity Assumption on the Lalonde Dataset}. The table presents the p-values for two tests (Hausman and Residual) under different normalizations (Drop1, Drop2, Demean, Median) across two cases: (i) the original number of predictors ($p$) and (ii) when $p$ is close to the number of observations ($n$).The tests assess the validity of the sparsity assumption with varying dimensions. We use LassoCV from scikit-lean to find the optimal alpha value in this case. \textcolor{red}{explain why lassocv}}
-% \caption{LALONDE DATASET: p value of the two tests on both the datasets. Note that we used the cross validated lasso for lalonde dataset\\
-% \\
-% for lalonde we accept the null hypothesis and say that the difference has no difference and say the sparsity assumptions hold (makes sense)
-
-% for communities and crime we reject the null hypothesis and say the sparsity assumption does not hold (makes sense too cause we want all variables) 
-% }
-% \textcolor{red}{we cannot do a more than n case because ols benchmark is not valid}
-
+\caption{\textit{P-values from Hausman and Residual Tests for different normalization strategies and Lasso regularization parameters. Dataset used: Communities and Crime Dataset}}
 \label{table:1}
 \end{table}
 
+In Table 7, for the first case ($\alpha = 10$), the results indicate that we accept the null hypothesis for both tests at a 10\% level of significance. However, for an alpha value that is chosen by the LassoCV method in the Scikit-learn package, the tests indicate entirely different results. The p-values suggest that we reject the null hypothesis for both tests, across all normalizations indicating the sparsity assumption does not hold.\\ 
+\\
+This result highlights how different choices of lasso values can significantly affect our results, potentially leading to entirely different results. \\
+\\
+\textit{Note: The lassoCV method chooses an extremely high alpha value than the alpha value 10. This is likely the reason for the stark contrast in the results.}
+
 \subsection{Evaluating OLS behaviour}
+Table 8 shows the standard error of the Ordinary Least Squares (OLS) estimator as the number of predictors ($p$) increases. The results show that as $p$ gets larger, the standard error increases, indicating that the OLS estimator is less reliable and stable in high-dimensional settings. This result confirms the statement that OLS gets noisy as the dimensionality of the data increases.
 \begin{table}[h!]
 \renewcommand{\arraystretch}{1.5}
 \centering
-\begin{tabular}{||l l||} 
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{||l l l l l l||} 
  \hline
  \hline
- $p$ & Standard Error(OLS) \\ [0.5ex] 
- \hline\hline
- 10 & 641.132017755161 \\ 
- 54 & 694.8235041339607  \\
- 99 & 751.549120310562 \\ 
- 188 & 792.3967783851008 \\ 
- 321 & 827.0268217222575 \\[1ex] 
- \hline
-\end{tabular}
-\caption{\textit{Standard errors of OLS Estimator with an increasing number of Predictors. Dataset used: Lalonde Dataset}}
+ Number of Predictors (p) & 10 & 54 & 99 & 188 & 321 \\ [0.5ex] 
+ \hline \hline
+ Standard Error (OLS) & 641.1320 & 694.8235 & 751.5491 & 792.3967 & 827.02682 \\
+ \hline \hline
+\end{tabular}%
+}
+\caption{\textit{Standard Errors of the OLS Estimator for the Lalonde Dataset across a different number of predictors.}}
 \label{table:1}
 \end{table}
-This table shows the standard error of the Ordinary Least Squares (OLS) estimator as the number of predictors ($p$) increases. We notice that as $p$ gets larger, the standard error increases, suggesting that OLS estimator is less reliable and stable in high-dimensional settings. This result confirms the statement that OLS gets noisy for an increasing number of dimensions. 
+\\
+\\
+\\
+\subsection{Evaluating the number of variables selected by lasso (cont.)}
 
-\subsection{Evaluating the number of variables selected by lasso}
-
+Table 9 shows the number of variables selected by the Lasso method across different normalization methods for the Communities and Crime Dataset. These results are consistent with those observed in the Lalonde dataset. For the original case, where the number of predictors ($p$) is smaller than the number of observations ($n$), the number of variables selected remains consistent across different normalization methods. \\
+\\
+However, as the dimensionality($p$) increases, there is greater fluctuation in the number of variables selected across the different normalization methods. This variation highlights the sensitivity of Lasso to the choice of normalization in high-dimensional settings, even in this case of the Communities and Crime Dataset. 
 \begin{table}[h!]
 \renewcommand{\arraystretch}{1.5}
 \centering
@@ -122,40 +156,7 @@ This table shows the standard error of the Ordinary Least Squares (OLS) estimato
 \caption{\textit{Number of variables selected by Lasso for Different Normalization Methods in the Communities and Crimes Dataset. Here, n = 1,892 }}
 \label{table:1}
 \end{table}
-
-\textit{Note:} The number of predictors ($p$) is increased through feature transformation techniques which include, polynomial expansions, interaction terms, and noise additions. We did not include the coefficient values as they were very small, making them challenging to interpret meaningfully. \\
 \\
-The table shows a similar behavior to that of the Lalonde dataset results. We can see that for the original case, where the number of predictors ($p$) is much smaller than the number of observations ($n$), the number of variables selected is similar across the different normalization methods. However, as the number of dimensions $p$ increases, there are more fluctuations in the number of variables selected across different normalizations, highlighting its sensitivity. 
-\textcolor{red}{you used the dataset without checks - see if you can make it for datasets with checks}
-
-
-
-
-\subsection{Evaluating for different regularization parameter ($\alpha$) values in Lasso}
-\begin{table}[h!]
-\renewcommand{\arraystretch}{1.5}
-\centering
-\begin{tabular}{||l l l l l||} 
- \hline
- \hline
- Test & Drop1 & Drop2 &  Demean & Median \\ [0.5ex] 
- \hline \hline
- \multicolumn{5}{||c||}{$\alpha$ = 10} \\ [0.5ex]
- Hausman Test & 0.22052 & 0.47046 & 0.3609 & 0.2580 \\ 
- Residual Test & 1.0 & 1.0 & 1.0 & 1.0 \\
- \hline
- \multicolumn{5}{||c||}{Lasso CV} \\ [0.5ex]
- Hausman Test & 5.84e-13 & 5.84e-13 & 3.66e-13 & 1.23e-13 \\ 
- Residual Test: & 1.11e-16 & 1.11e-16  & 1.11e-16 & 1.11e-16 \\ [1ex] 
- \hline \hline
-\end{tabular}
-\caption{\textit{P-values from Hausman and Residual Tests for different normalization strategies and alpha values. Dataset used: Communities and Crime Dataset}}
-\label{table:1}
-\end{table}
-
-
-Here, for the first case ($\alpha = 10$), the results indicate that we accept the null hypothesis for both cases at a 10\% level of significance. However, for an alpha value that is cross-validated through the LassoCV method in the Scikit-learn package, the tests indicate the opposite results. In the second case, we would reject the null hypothesis for both tests, across all normalizations indicating the sparsity assumption does not hold.\\ 
+\textit{Note:} The number of predictors ($p$) was increased through feature transformation techniques which include, polynomial expansions, interaction terms, and noise additions. We did not include the coefficient values as they were very small, making them challenging to interpret meaningfully. \\
 \\
-This table highlights how different choices of lasso values can significantly affect our results and is also possible that our results might be reversed entirely. \\
-\\
-Note: The lassoCV method chooses an extremely high alpha value than the alpha value 10. This is likely the reason for the stark contrast in the results. 
+
