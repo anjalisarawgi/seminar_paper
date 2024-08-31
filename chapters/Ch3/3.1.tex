@@ -1,19 +1,18 @@
-In regression analysis, 'normalisation' just means the transformations applied to the variables before they're used in models. In this case of estimating causal effects, these normalisations are about transforming the control variables. In these cases, we create a control matrix, $W_i$, which includes all of our control variables.The paper looks at how setting up the control matrix with different normalisation methods affects the results for the coefficients of estimates in general when we use SBEs. \\
+In regression analysis, `normalization' just means the transformations applied to the variables before they're used in models. In this case of estimating causal effects, these normalizations are about transforming the control variables. In these cases, we create a control matrix ($W_i$), which includes all of our control variables. The paper looks at how setting up the control matrix with different normalization methods affects the results for the coefficients of estimates when we use SBEs. \\
 
-For example, consider a study to analyze the effect of education on income. A decision has to be made on how to handle control variables like age and education level. As a preprocessing step, we may handle variables differently such as centering the age variable by substracting its mean, or choosing which education category should be treated as a baseline variable (eg "High School" vs "PhD"). These choices which one may assume is not that important, might actually be very crucial as it may affect our results and estimates significantly. \\
+For example, consider a study to analyze the effect of education on income. A decision has to be made on how to handle control variables like age (continuous variable) and education level (categorical variable). As a pre-processing step, we may handle variables differently such as centering the age variable (by subtracting its mean vs median), or choosing which education category should be treated as a baseline variable (eg "High School" vs "PhD"). These choices which one may assume are not that important, might be very crucial as they may affect our results and estimates significantly. \\
 
-The paper explores how different normalization methods affect the performance of sparsity-based estimators (SBEs). Unlike traditional OLS where the choice of normalization doesn't affect the final estimates, SBEs are highly sensitive to normalization's and how the control matrix is constructed. \\
+The paper explores how different normalization methods affect the performance of sparsity-based estimators (SBEs). Unlike traditional OLS where the choice of normalization doesn't affect the final estimates, SBEs are highly sensitive to normalization and how the control matrix is constructed.  This highlights the importance of thoughtful normalizations in obtaining reliable results with SBEs.\\
 
-For example, the study shows that changing how categorical variables are handled (such as which baseline categories are dropped) or how continuous variables are centred can lead to variations in SBEs by as much as two standard errors. This highlights the importance of thoughtful normalization's in obtaining reliable results with SBEs.\\
-
-The normalization methods examined include:
+The normalization methods examined in this paper include:
 \begin{enumerate}
     \item \textbf{Grouping columns to resolve multicollinearity}, where different baseline categories are compared
-    \item \textbf{Normaliziing baseline controls}, such as substracting the mean or median 
+    \item \textbf{Normalizing baseline controls}, such as subtracting the mean or median 
     \item \textbf{Grouping categories together as subsets}, where multiple categories like "High School" and "Bachelors" are combined into one subset. 
-    \item \textbf{Varying offset values} for continuous variables, such as age, bu substracting different values of $\lambda$ (eg. 40, 41, 42, 43).
+    \item \textbf{Varying offset values} for continuous variables, such as age, by subtracting different values of $\lambda$ (eg. 40, 41, 42, 43).
     
 \end{enumerate}
 
-\textcolor{blue}{not sure if i want to include this here:}
-This lack of in variance to linear reparameterisation means that researchers need to be very careful when applying or specifying the control matrix when using sparsity-based estimators. The study also shows that the likelihood of getting a sparse representation when we randomly choose a normalization matrix decreasesas the number of observations increases. This means that relying on the default choices for making our control matrix (W) in a statistical software is probably not going to help us achieve sparsity. Instead, in practice these choices should be carefully considered and a well justified normalization method is essential for ensuring the validity of the analysis. 
+This lack of variance to linear reparameterization means that researchers need to be very careful when applying or specifying the control matrix when using sparsity-based estimators. The study also shows that the likelihood of getting a sparse representation when we randomly choose a normalization matrix decreases as the number of observations increases. This means that relying on the default choices for making our control matrix (W) in statistical software is probably not going to help us achieve sparsity. Instead, in practice these choices should be carefully considered and a well-justified normalization method is essential for ensuring the validity of the analysis. \\
+\\
+The authors present this sensitivity of SBEs to normalizations theoretically and experimentally (on the three empirical datasets). The following sections explain the theoretical findings of the paper.

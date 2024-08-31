@@ -7,25 +7,25 @@
 
 \begin{enumerate}
     \item \textbf{Choice of Datasets:} 
-    The original paper analysed the results on thrree empirical applications to examine the robustness of Sparsity-Based Estimators (SBEs):
+    The original paper analysed the results on three empirical applications to examine the robustness of Sparsity-Based Estimators (SBEs). They are:
     \begin{itemize}
         \item Effect of Abortion on Crime (\cite{abortionCrime})
         \item Occupational Upgrading by Black Southerners (\cite{blackWW2})
         \item Impact of Moral Values on Voting Behaviour (\cite{votingMoral})
     \end{itemize}
-    In our study, we extended this study by selecting two additional datasets.
+    To extend the analysis, our study implemented two additional datasets:
     \begin{itemize}
         \item Lalonde Dataset (\cite{dowhy})
         \item Communities and Crime dataset (\cite{misc_communities_and_crime_unnormalized_211})
     \end{itemize}
 
     \item \textbf{Baseline Comparison:}\\
-    As in the original paper, we compare the two datasets using their regression models with OLS and SBEs, including the post-double selection method. The authors used this comparison to see how estimates differed because of the sparsity assumption. Our Study used this comparison too to assess how well SBEs work compared to OLS in different situations. 
-
+    As in the original paper, we conducted a baseline comparison using regression models with both Ordinary Least Squares (OLS) and SBEs, including the post-double selection method. The authors used this comparison to see how for the differences in the estimates arising from the sparsity assumption. Our study also used this comparison to assess how well SBEs work compared to OLS in different situations. 
+    
     \item \textbf{Choice of predictors (p)}:\\
-    The original paper carefully choses the number of predictors $p$ relative to the number of observations $n$ to ensure that $p$is close to but less than $n$. This allowed the authors to use OLS as a benchmark to evaluate the performance. The original paper essentially focused on a high dimensional case where $p$ is close to but less than $n$. 
+    The original paper carefully chooses the number of predictors ($p$) relative to the number of observations ($n$)to ensure that $p$ is close to but less than $n$. This allowed the authors to use OLS as a benchmark to evaluate the performance. The original paper mainly focused on a high-dimensional case where $p$ is close to but less than $n$. 
 
-    In our study, we extend this approach by experimenting with three similar cases:
+    In our study, we extend this approach by experimenting with three different cases:
     \begin{enumerate}
         \item \textbf{Case 1:} Where $p$ has its original dimensions which is much smaller than $n$
         \item \textbf{Case 2:} Where $p$ is close to $n$
@@ -33,7 +33,7 @@
     \end{enumerate}
     This approach allowed us to test the robustness of the SBEs across different dimensional settings. 
 
-    \item \textbf{Model:} Both, the original paper and our experiments use the post double lasso as the primary model. Additionally, we also use a simple OLS regression serving as a baseline for comparision.The post double lasso is constructed as follows:
+    \item \textbf{Model:} Both, the original paper and our experiments use the post-double lasso as the primary model. The post-double lasso is designed to enhance variable selection and address potential biases in high-dimensional settings. The post-double lasso is constructed as follows:
     \begin{enumerate}
         \item First Lasso Regression: Regressing treatment (D) on the control variables (X)
         \item Second Lasso Regression: Regression outcome (Y) on the control variables (X)
@@ -49,15 +49,7 @@
     \end{enumerate}
 
     \item \textbf{Application of Sparsity Tests:}\\
-    The authors presented two tests to evaluate the validity of the sparsity assumption. Our study also follow the same tests to evaluate the assumptions of sparsity. These tests are:
-    \begin{enumerate}
-        \item Hausman Test
-        \item Residual Test
-    \end{enumerate}
-
-    \item \textbf{Analysis across different settings:}\\
-     While the original paper focused on the three chosen empirical applications, we extend the analysis to test how the results of the estimates vary for varying datasets sizes, that is for varying number of observations $n$. Additionally, in our study we also check how sensitive our results to different preprocessing variations. 
-        
+    The authors presented two tests to evaluate the validity of the sparsity assumption. Our study also follows the same tests to evaluate the assumptions of sparsity. These tests are the `Hausman Test' and the `Residual Test'.
 
     
 \end{enumerate}

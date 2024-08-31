@@ -34,7 +34,7 @@ varying dataset sizes. \\
 
 \textbf{Interpretation:} These results are for dropping the first reference category along with no offset normalization for the categorical variables. The table shows that as we decrease the number of observations $n$, the standard error also continues to increase. This pattern indicates that larger sample sizes help stabilize the estimates from sparsity based estimators (SBEs), reducing their fragility. Smaller sample sizes on the other hand are associated with larger standard errors which indicates greater variability and less reliable estimates. \\
 \\
-More intitutively, this result supports the fact that as the ratio of p to n reduces, the model performs better.\\
+More intuitively, this result supports the fact that as the ratio of p to n reduces, the model performs better.\\
 \\
 \textit{Note:} The communities and crime dataset is not a standard causal inference dataset. When testing with "pop" (population) as the treatment variable, we observed that the coefficients for the treatment are very small. This outcome suggests that there is a minimal causal effect of the treatment on the outcome variable. However, this should not affect our findings on the robustness of SBEs because our focus it to study the behaviour of the standard errors rather than the causal effect size itself.\\
 \\

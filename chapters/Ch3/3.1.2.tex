@@ -1,22 +1,21 @@
 In regression models, dealing with categorical variables is common. Categorical variables, such as education levels are typically represented as groups of binary variables (also known as dummy variables). Further, to avoid the problem of perfect collinearity, we drop one of these dummy variables as a 'reference category' to avoid perfect collinearity. \\
 \\
-For example, consider an education variable with four levels i.e. High School, Bachelors, Masters and PhD. Here, we may create three binary variables as "High School", "Bachelors" and "Masters" and drop one category "PhD" as a reference category. Sometimes, the categories can also be grouped together as subsets to understand a combined effect on the outcome. For example: High School and Bachelors can be combined into one category.\\
+For example, consider an education variable with four levels: High School, Bachelor, Master, and PhD. We could create three binary variables "High School", "Bachelor" and "Master" - while using "PhD" as a reference category. Sometimes, the categories can also be grouped as subsets to understand a combined effect on the outcome. For instance, High School and Bachelor's can be combined into one category.\\
 \\
 \textbf{Effect of choice of reference category on Sparsity:}
-The study shows that the choice of the baseline (reference) category can significantly influence the sparsity pattern. If a different category is chosen as reference, the coefficients of the dummy variables created for these categorical variables will change, leading to different set of variables being selected. The sparsity of the model thereby heavily depends on how the categorical variables are represented. \textcolor{red}{might want to reread and add more}
+The study shows that the choice of the baseline (reference) category can significantly influence the sparsity pattern. If a different category is chosen as a reference, the coefficients of the dummy variables created for these categorical variables will change, leading to a different set of variables being selected. Thus, the sparsity of the model can be heavily dependent on how the categorical variables are represented.\\
 \\
-
 \textbf{Theorem 2} 
 \textit{Suppose a single coefficient on $W_i = A_0 Z_i$  is constant and non-zero, and the number of zeros K in the corresponding row of $A_0$ satisfies $0<\lim _{n \rightarrow \infty} K / p<1$. If all baseline categories have population fractions of the same order, then the probability that the model with on $W_i = A_0 Z_i$ satisfies the sparsity assumption is no larger than $(1-q+\varepsilon)^K$ for all $\varepsilon>0$ and large enough p.}\\
 \\
-\textbf{Interpretation:} Theorem 2 theoretically explains how different representations of the categorical variables in a regression model affects the model's sparsity.\\ 
+\textbf{Interpretation:} Theorem 2 theoretically explains how different representations of the categorical variables in a regression model affect the model's sparsity.\\ 
 
 Consider, 
 \begin{enumerate}
     \item A categorical variable with $p$ categories 
-    \item $\mathbf{A}$ as the set of all possible full-rank \textcolor{red}{$p x p$ OR $ p x p-1$ } matrices 
-    \item $A_0 \in \mathbf{A}$ as the standard way of encoding this categorical variable. Under this standard coding, lets assume the model is sparse, i.e. the coefficient vector ${\gamma}_0$ has few non-zero coefficients.
-    \item An alternative \textcolor{red}{encoding} matrix $\mathcal{A} \in \mathbf{A}$ where, $\mathcal{A}$ represents different ways of representing this categorical variable. 
+    \item $\mathbf{A}$ as the set of all possible full-rank $p x p-1$s matrices 
+    \item $A_0 \in \mathbf{A}$ as the standard way of encoding this categorical variable. Under this standard coding, let's assume the model is sparse, i.e. the coefficient vector ${\gamma}_0$ has few non-zero coefficients.
+    \item An alternative encoding matrix $\mathcal{A} \in \mathbf{A}$ where, $\mathcal{A}$ represents different ways of representing this categorical variable. 
 \end{enumerate}
-Theorem 2 investigates the probability that a randomly chosen encoding matrix $\mathcal{A}$ will result in a sparse representation. It shows that if a model is sparse under one encoding schele (like $A_0$), then there is little chance it will remain sparse if the categorical variables are re-encoded using a different randomly chosen scheme (like $\mathcal{A}$). This result shows how easily the sparsity assumption can be affected and suggests that the results of sparsity-based estimators can vary alot depending on how the categorical variables encoded. Additionally,as the number of categories $p$ increases, the probability of achieving a sparse representation approaches zero, further highlighting the sensitivity of sparsity to a randomly chosen encoding scheme.
+Theorem 2 investigates the probability that a randomly chosen encoding matrix $\mathcal{A}$ will result in a sparse representation. It shows that if a model is sparse under one encoding scheme (like $A_0$), then there is little chance it will remain sparse if the categorical variables are re-encoded using a different randomly chosen scheme (like $\mathcal{A}$). This result shows how easily the sparsity assumption can be affected and suggests that the results of sparsity-based estimators can vary a lot depending on how the categorical variables are encoded. Additionally, as the number of categories $p$ increases, the probability of achieving a sparse representation approaches zero, further highlighting the sensitivity of sparsity to a randomly chosen encoding scheme.
 

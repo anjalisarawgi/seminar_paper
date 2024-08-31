@@ -1,4 +1,4 @@
-For modelling complex relationships in regression, \textbf{Hermite polynomials} are useful because they help us capture non-linear effects. By introducing non parametric regression, the paper extends the discussion to more complex scenarios involving continuous variables. \\
+For modeling complex relationships in regression, \textbf{Hermite polynomials} are useful because they help us capture non-linear effects. By introducing nonparametric regression, the paper extends the discussion to more complex scenarios involving continuous variables. \\
 \\
 One of the most important things to consider when using Hermite polynomials is how we center or shift the variables of interest before applying the polynomial transformation. The authors indicate that this offset or shift can have a big impact on the results of regression, especially to maintain sparsity.\\
 \\
@@ -12,7 +12,7 @@ Consider:
     \item \textbf{Hermite Polynomials $H_j (x)$:} to capture non linear relationships between the continuous variable $z_i$ and the dependent variable. They are particularly effective when $z_i$ follows a normal distribution. 
     \item \textbf{Offset $\lambda$:} The offset $\lambda$ is a sift applied to the variable $z_i$ before it is transformed by the Hermite polynomial
     \item $\boldsymbol{p}$ :  $p$ is the number of polynomial terms in the model
-    \item $\boldsymbol{L}$ : where, $L$ is a positive number that does not change in some cases but can decrease in others
+    \item $\boldsymbol{L}$: where $L$ is a positive number that does not change in some cases but can decrease in others
     \item $\boldsymbol{\lambda = \frac{L}{\log p}}$ : This is the formula that determines the offset on $L$ based on $p$
 \end{enumerate}
 
@@ -20,5 +20,5 @@ Consider:
 \\
 \textbf{$L$ approaches 0:} If $L$ decreases as $p$ increases (i.e.$L \rightarrow 0$), the offset $\lambda$ decreases more effectively, adjusting for the slow growth of $\log p$. This adjustment ensures that the coefficients remain small and helps to keep the model sparse. \\
 \\
-\textbf{Key point:} The way we adjust our variables with the offset $\lambda$ either makes our model very complex with a lot of important terms, or it can keep it very simple with only a few important terms. If we pick the wrong shift $\lambda$ like when $L$ is fixed, your model might end up being too complicated with too many important terms. Whereas, if we carefully choose $\lambda$ where $L$ decrease as more terms are added, the model remains sparse retaining only a few terms that really matter.
+\textbf{Key point:} The way we adjust our variables with the offset $\lambda$ either makes our model very complex with a lot of important terms, or it can keep it very simple with only a few important terms. If we pick the wrong shift $\lambda$ like when $L$ is fixed, your model might end up being too complicated with too many important terms. Whereas, if we carefully choose $\lambda$ where $L$ decreases as more terms are added, the model remains sparse retaining only a few terms that matter.
 

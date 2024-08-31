@@ -1,20 +1,20 @@
-The Hausmann Test acts as a relevance check in econometric models. The Hausman tests is a statistical method used to study the consistency of different estimators by comparing the results of sparisty-based estimator to the Ordinary Least Square Estimators. This test aims to determine whether the difference between these two estimates are statistically significant. If a significant differnece is found, it may indicate that the sparisty-based estimators (SBEs) are unreliable or biased as compared to the OLS estimators. \\
+The Hausmann Test acts as a relevance check in econometric models. The Hausman tests is a statistical method used to study the consistency of different estimators by comparing the results of a sparisty-based estimator to the Ordinary Least Square Estimators. This test aims to determine whether the difference between these two estimates is statistically significant. If a significant difference is found, it may indicate that the sparsity-based estimators (SBEs) are unreliable or biased as compared to the OLS estimators. \\
 \\
 \textbf{Steps involved:}
 \begin{enumerate}
     \item Define the Hypothesis:\\
-    $H_0:$ The difference between OLS and SBE estimates is not statistically significant
+    $H_0:$ The difference between OLS and SBE estimates is not statistically significant (assumptions hold)\\
     $H_1:$ The difference between OLS and SBE estimates is statistically significant
     \item \textbf{Calculate the Estimates:} Calculate the coefficient estimates $\hat{\beta}_{OLS}$ using the OLS estimator and $\hat{\beta}_{SBE}$ using SBE estimators.
     \item \textbf{Calculate the Variances:} Next, determine the variance of of these estimates i.e. $ s^2_{OLS} $ and $ s^2_{SBE} $.
     \item \textbf{Determine the difference and its standard error:} Compute the difference between the two estimates: $d = \hat{\beta}_{OLS} - \hat{\beta}_{SBE}$\\
     \\
-    Additionally, calculate the standard error of this difference as: $SE(d) = s_H = \sqrt{s^2_{OLS} + s^2_{SBE}}$\\
+    Additionally, calculate the standard error of this difference as $SE(d) = s_H = \sqrt{s^2_{OLS} - s^2_{SBE}}$\\
     \\
-    The authors present a Lemma (Lemma 2) which provides the theoretical foundations of the Hausman Test, ensuring that under right conditions, this difference can be interpreted reliably in statistical inference. \footnote{Lemma 2: It presents that under certain conditions, the difference between the OLS estimator ($\hat{\beta}_{OLS}$) and another estimator ($\hat{\beta}$) - denoted as $d = $ $\hat{\beta}_{OLS}$ - $\hat{\beta}^*$ - follows a standard normal distribution when normalized with its standard error $s_H$. Specifically,$ \frac{d}{s_H} \sim \mathcal{N}(0,1)$ , which allows the use of Z-test to determine if the difference $d$ is statistically significant. }
+    The authors present a Lemma (Lemma 2) which provides the theoretical foundations of the Hausman Test, ensuring that under the right conditions, this difference can be interpreted reliably in statistical inference. \footnote{Lemma 2: It presents that under certain conditions, the difference between the OLS estimator ($\hat{\beta}_{OLS}$) and another estimator ($\hat{\beta}$) - denoted as $d = $ $\hat{\beta}_{OLS}$ - $\hat{\beta}^*$ - follows a standard normal distribution when normalized with its standard error $s_H$. Specifically,$ \frac{d}{s_H} \sim \mathcal{N}(0,1)$ , which allows the use of the Z-test to determine if the difference $d$ is statistically significant. }
     \item \textbf{Compute the test statistic:} The test statistic $z$ is computed as: 
     $z = \frac{d}{SE(d)}$\\
-    This $z$-statistic follows a normal distribution and it is used to make inferences about whether the differnce between OLS and SBE is statistically significant. A large value of $z$ indicates a significant difference leading to the rejection of the null hypothesis.
+    This $z$-statistic follows a normal distribution and it is used to make inferences about whether the difference between OLS and SBE is statistically significant. A large value of $z$ indicates a significant difference leading to the rejection of the null hypothesis.
 \end{enumerate}
 
-\textbf{Interpretation:} If  $H_0$ is rejected, the Hausman test finds that the difference between the OLS and SBE estimates are statistically significant. This significant difference suggests the assumptions under which SBEs are applied might not hold, or that the SBE estimators might be producing biased or inconsistent estimates. 
+\textbf{Interpretation:} If  $H_0$ is rejected, the Hausman test finds that the difference between the OLS and SBE estimates is statistically significant. This significant difference suggests the assumptions under which SBEs are applied might not hold, or that the SBE estimators might be producing biased or inconsistent estimates. 

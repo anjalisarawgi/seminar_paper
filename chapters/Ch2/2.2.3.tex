@@ -1,9 +1,8 @@
-We assume that $p$ is less than $n$ i.e. $p < n$, but still relatively large. This assumption is important here because:
+The authors assume that $p$ is less than $n$ i.e. $p < n$, but still relatively large. This assumption is important here because:
 \begin{enumerate}
-    \item It allows us to use the OLS benchmark for comparisions. That is, OLS being a traditional estimator restricts us for $p$ to be less than $n$ in all cases. Using this restriction of $p < n$ allows us to use the OLS benchmark to undertand the efficiency and robustness of our sparsity estimators. 
-    \item By ensuring that $p$ is stil high but less than $n$, we are able to create a high-dimensional scenario where traditional OLS may struggle, yet remain computationally possible. T
+    \item It allows us to use the OLS benchmark for comparisons. That is, OLS being a traditional estimator restricts us for $p$ to be less than $n$ in all cases. Using this restriction of $p < n$ allows us to use the OLS benchmark to understand the efficiency and robustness of our sparsity estimators. 
+    \item By ensuring that $p$ is stil high but less than $n$, we are able to create a high-dimensional scenario where traditional OLS may struggle, yet remain computationally possible. 
 \end{enumerate}
-
-This setup allows us to directly compare the performance of OLS against Sparsity-Based Estimators (SBEs) in a setting where $p$ approaches $n$, testing the limits of OLS while also exploring the potential advantages of SBEs. 
-
-\textcolor{red}{Asymptotically normal assump???}
+This setup allows us to directly compare the performance of OLS against Sparsity-Based Estimators (SBEs) in a setting where $p$ approaches $n$, testing the limits of OLS while also exploring the potential advantages of SBEs. \\
+\\
+Furthermore, we also evaluate for the case of $p$ larger than $n$ in our experiments.
